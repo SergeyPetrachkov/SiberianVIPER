@@ -10,7 +10,7 @@ import Foundation
 
 extension UIViewController: Closeable {
   public func close(animated: Bool, completion: (() -> Void)?) {
-    if let navigationController = self.navigationController {
+    if let navigationController = self.navigationController, navigationController.topViewController != self {
       navigationController.popViewController(animated: animated)
     } else {
       self.dismiss(animated: animated, completion: completion)
