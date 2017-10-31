@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Startable {
+public protocol Startable {
   func start()
   func stop()
 }
