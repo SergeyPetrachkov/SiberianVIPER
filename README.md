@@ -3,11 +3,9 @@
 [![License](https://img.shields.io/cocoapods/l/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
 [![Platform](https://img.shields.io/cocoapods/p/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
 
-[![Templates]https://img.shields.io/cocoapods/p/SiberianVIPER.svg?style=flat)(https://github.com/SergeyPetrachkov/VIPERTemplates)]
-
 Swift protocols for VIPER from Siberia with love!
 
-Try also VIPERTemplates and SiberianSwift!
+Try also [VIPERTemplates](https://github.com/SergeyPetrachkov/VIPERTemplates) and [SiberianSwift](https://github.com/SergeyPetrachkov/SiberianSwift) !
 
 ## Requirements
 
