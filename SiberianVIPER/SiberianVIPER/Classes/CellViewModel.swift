@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol CellViewAnyModel {
-  var cellAnyType: UIView.Type { get }
+  static var cellAnyType: UIView.Type { get }
   func setupAny(cell: UIView)
 }
 /// Use this protocol to represent UICollectionViewCell or UITableViewCell data context
@@ -49,5 +49,42 @@ public extension CellViewModel {
   }
   func setupAny(cell: UIView) {
     setup(cell: cell as! CellType)
+  }
+}
+
+public extension UITableView {
+  func dequeueReusableCell<T: CellViewModel>(withModel model: T, for indexPath: IndexPath) -> UITableViewCell {
+    let identifier = String(describing: T.CellType.self)
+    let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+    if let cell = cell as? T.CellType {
+      model.setup(cell: cell)
+    }
+    return cell
+  }
+  
+  func dequeueReusableCell(withModel model: CellViewAnyModel, for indexPath: IndexPath) -> UITableViewCell {
+    let identifier = String(describing: type(of: model).cellAnyType)
+    let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+    model.setupAny(cell: cell)
+    return cell
+  }
+}
+
+public extension UICollectionView {
+  
+  func dequeueReusableCell<T: CellViewModel>(withModel model: T, for indexPath: IndexPath) -> UICollectionViewCell {
+    let identifier = String(describing: T.CellType.self)
+    let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+    if let cell = cell as? T.CellType {
+      model.setup(cell: cell)
+    }
+    return cell
+  }
+  
+  public func dequeueReusableCell(withModel model: CellViewAnyModel, for indexPath: IndexPath) -> UICollectionViewCell {
+    let identifier = String(describing: type(of: model).cellAnyType)
+    let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+    model.setupAny(cell: cell)
+    return cell
   }
 }
