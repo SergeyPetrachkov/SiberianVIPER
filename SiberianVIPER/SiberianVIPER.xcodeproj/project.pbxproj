@@ -8,12 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		3963E0921FA8206900FD701D /* SiberianVIPER.h in Headers */ = {isa = PBXBuildFile; fileRef = 3963E0901FA8206900FD701D /* SiberianVIPER.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3963E09A1FA8217500FD701D /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0991FA8217500FD701D /* CellViewModel.swift */; };
+		3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E09B1FA8240A00FD701D /* Closeable.swift */; };
+		3963E09F1FA8244500FD701D /* UIView+Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E09E1FA8244500FD701D /* UIView+Closeable.swift */; };
+		3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */; };
+		3963E0A31FA8248E00FD701D /* CloseableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A21FA8248E00FD701D /* CloseableRouter.swift */; };
+		3963E0A61FA824EB00FD701D /* Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A51FA824EB00FD701D /* Startable.swift */; };
+		3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A71FA8251600FD701D /* Presenter+Startable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3963E08D1FA8206900FD701D /* SiberianVIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SiberianVIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3963E0901FA8206900FD701D /* SiberianVIPER.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiberianVIPER.h; sourceTree = "<group>"; };
 		3963E0911FA8206900FD701D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3963E0991FA8217500FD701D /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		3963E09B1FA8240A00FD701D /* Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closeable.swift; sourceTree = "<group>"; };
+		3963E09E1FA8244500FD701D /* UIView+Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Closeable.swift"; sourceTree = "<group>"; };
+		3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Closeable.swift"; sourceTree = "<group>"; };
+		3963E0A21FA8248E00FD701D /* CloseableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseableRouter.swift; sourceTree = "<group>"; };
+		3963E0A51FA824EB00FD701D /* Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startable.swift; sourceTree = "<group>"; };
+		3963E0A71FA8251600FD701D /* Presenter+Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Presenter+Startable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +70,31 @@
 		3963E0981FA8208100FD701D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3963E0A41FA824DE00FD701D /* Startable */,
+				3963E09D1FA8243300FD701D /* Closeable */,
+				3963E0991FA8217500FD701D /* CellViewModel.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		3963E09D1FA8243300FD701D /* Closeable */ = {
+			isa = PBXGroup;
+			children = (
+				3963E09B1FA8240A00FD701D /* Closeable.swift */,
+				3963E09E1FA8244500FD701D /* UIView+Closeable.swift */,
+				3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */,
+				3963E0A21FA8248E00FD701D /* CloseableRouter.swift */,
+			);
+			path = Closeable;
+			sourceTree = "<group>";
+		};
+		3963E0A41FA824DE00FD701D /* Startable */ = {
+			isa = PBXGroup;
+			children = (
+				3963E0A51FA824EB00FD701D /* Startable.swift */,
+				3963E0A71FA8251600FD701D /* Presenter+Startable.swift */,
+			);
+			path = Startable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +140,7 @@
 				TargetAttributes = {
 					3963E08C1FA8206900FD701D = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -139,6 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3963E09F1FA8244500FD701D /* UIView+Closeable.swift in Sources */,
+				3963E0A31FA8248E00FD701D /* CloseableRouter.swift in Sources */,
+				3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */,
+				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
+				3963E0A61FA824EB00FD701D /* Startable.swift in Sources */,
+				3963E09A1FA8217500FD701D /* CellViewModel.swift in Sources */,
+				3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +306,7 @@
 		3963E0961FA8206900FD701D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -273,6 +319,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.petrachkov.SiberianVIPER;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -281,6 +328,7 @@
 		3963E0971FA8206900FD701D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
