@@ -15,6 +15,7 @@
 		3963E0A31FA8248E00FD701D /* CloseableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A21FA8248E00FD701D /* CloseableRouter.swift */; };
 		3963E0A61FA824EB00FD701D /* Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A51FA824EB00FD701D /* Startable.swift */; };
 		3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A71FA8251600FD701D /* Presenter+Startable.swift */; };
+		3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0AA1FA825B600FD701D /* SiberianCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3963E0A21FA8248E00FD701D /* CloseableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseableRouter.swift; sourceTree = "<group>"; };
 		3963E0A51FA824EB00FD701D /* Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startable.swift; sourceTree = "<group>"; };
 		3963E0A71FA8251600FD701D /* Presenter+Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Presenter+Startable.swift"; sourceTree = "<group>"; };
+		3963E0AA1FA825B600FD701D /* SiberianCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiberianCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		3963E0981FA8208100FD701D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3963E0A91FA8259600FD701D /* Collection */,
 				3963E0A41FA824DE00FD701D /* Startable */,
 				3963E09D1FA8243300FD701D /* Closeable */,
 				3963E0991FA8217500FD701D /* CellViewModel.swift */,
@@ -95,6 +98,14 @@
 				3963E0A71FA8251600FD701D /* Presenter+Startable.swift */,
 			);
 			path = Startable;
+			sourceTree = "<group>";
+		};
+		3963E0A91FA8259600FD701D /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				3963E0AA1FA825B600FD701D /* SiberianCollection.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 				3963E0A31FA8248E00FD701D /* CloseableRouter.swift in Sources */,
 				3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */,
 				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
+				3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */,
 				3963E0A61FA824EB00FD701D /* Startable.swift in Sources */,
 				3963E09A1FA8217500FD701D /* CellViewModel.swift in Sources */,
 				3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */,
