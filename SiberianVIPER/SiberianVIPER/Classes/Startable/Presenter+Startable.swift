@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Presenter: Startable {
-  
+public protocol Presenter: Startable {
+  func requestClose()
 }
