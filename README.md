@@ -9,7 +9,7 @@ Try also [VIPERTemplates](https://github.com/SergeyPetrachkov/VIPERTemplates) an
 
 ## Requirements
 
-Swift 4.0, iOS version >= 10.0
+Swift 4.0, iOS version >= 9.0
 
 ## Installation
 
