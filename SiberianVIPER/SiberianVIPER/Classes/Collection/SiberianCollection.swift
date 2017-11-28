@@ -55,6 +55,7 @@ public protocol SiberianCollectionSource: AnySiberianCollectionSource {
   
   func item(for indexPath: IndexPath) -> ItemType?
   func numberOfItems(in section: Int) -> Int
+  func numberOfSections() -> Int
   
 }
 public extension SiberianCollectionSource {
@@ -72,15 +73,16 @@ public extension SiberianCollectionSource {
 }
 
 public protocol AnySiberianCollectionSource {
-  static var AnyType: CellViewAnyModel.Type { get }
+  var AnyType: CellViewAnyModel.Type { get }
   
   func anyItem(for indexPath: IndexPath) -> CellViewAnyModel?
   func numberOfAnyItems(in section: Int) -> Int
+  func numberOfSections() -> Int
 }
 
 
 open class SiberianTableSource: NSObject, UITableViewDataSource {
-  fileprivate(set) var provider: AnySiberianCollectionSource!
+  public fileprivate(set) var provider: AnySiberianCollectionSource!
   
   fileprivate override init() {
     super.init()
@@ -90,11 +92,16 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
     self.init()
     self.provider = provider
   }
-  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  
+  open func numberOfSections(in tableView: UITableView) -> Int {
+    return self.provider.numberOfSections()
+  }
+  
+  open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.provider.numberOfAnyItems(in: section)
   }
   
-  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let model = self.provider.anyItem(for: indexPath) {
       let cell = tableView.dequeueReusableCell(withModel: model, for: indexPath)
       model.setupAny(cell: cell)
