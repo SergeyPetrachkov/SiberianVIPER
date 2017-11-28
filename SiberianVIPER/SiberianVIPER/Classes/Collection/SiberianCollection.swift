@@ -93,15 +93,15 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
     self.provider = provider
   }
   
-  public func numberOfSections(in tableView: UITableView) -> Int {
+  open func numberOfSections(in tableView: UITableView) -> Int {
     return self.provider.numberOfSections()
   }
   
-  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.provider.numberOfAnyItems(in: section)
   }
   
-  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let model = self.provider.anyItem(for: indexPath) {
       let cell = tableView.dequeueReusableCell(withModel: model, for: indexPath)
       model.setupAny(cell: cell)
