@@ -111,3 +111,7 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
     }
   }
 }
+
+public protocol SiberianCollectionDelegate: class {
+  func didSelect(item: CellViewAnyModel, at indexPath: IndexPath)
+}
