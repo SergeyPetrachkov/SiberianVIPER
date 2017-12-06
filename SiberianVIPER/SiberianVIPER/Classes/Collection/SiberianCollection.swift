@@ -74,10 +74,14 @@ public extension SiberianCollectionSource {
 
 public protocol AnySiberianCollectionSource {
   var AnyType: CellViewAnyModel.Type { get }
+  // MARK: - Sections
+  func numberOfSections() -> Int
   
+  func modelForSection(at index: Int) -> CellViewAnyModel?
+  func heightForSection(at index: Int) -> CGFloat
+  // MARK: - Items
   func anyItem(for indexPath: IndexPath) -> CellViewAnyModel?
   func numberOfAnyItems(in section: Int) -> Int
-  func numberOfSections() -> Int
 }
 
 
@@ -110,4 +114,8 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
       fatalError("An error occured while trying to access SiberianTableSource item at indexPath:\(indexPath)")
     }
   }
+}
+
+public protocol SiberianCollectionDelegate: class {
+  func didSelect(item: CellViewAnyModel, at indexPath: IndexPath)
 }
