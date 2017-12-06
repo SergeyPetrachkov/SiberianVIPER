@@ -74,10 +74,14 @@ public extension SiberianCollectionSource {
 
 public protocol AnySiberianCollectionSource {
   var AnyType: CellViewAnyModel.Type { get }
+  // MARK: - Sections
+  func numberOfSections() -> Int
   
+  func modelForSection(at index: Int) -> CellViewAnyModel?
+  func heightForSection(at index: Int) -> CGFloat
+  // MARK: - Items
   func anyItem(for indexPath: IndexPath) -> CellViewAnyModel?
   func numberOfAnyItems(in section: Int) -> Int
-  func numberOfSections() -> Int
 }
 
 
