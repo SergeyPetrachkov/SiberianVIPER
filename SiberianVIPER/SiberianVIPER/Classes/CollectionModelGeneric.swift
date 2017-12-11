@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+extension SelfSizingModel {
+  func getSize() -> CGSize
+}
+
 public protocol CollectionModel {
   static var cellAnyType: UIView.Type { get }
   func setupAny(cell: UIView)
