@@ -8,13 +8,6 @@
 
 import Foundation
 
-/// Represents atomic change in a collection
-public enum CollectionChange {
-  case new(IndexPath?)
-  case edit(IndexPath)
-  case delete(IndexPath)
-}
-
 /// Protocol that is an abstraction over average datasource. Use it in ViewModels of table/collection modules
 ///
 ///
@@ -114,11 +107,4 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
       fatalError("An error occured while trying to access SiberianTableSource item at indexPath:\(indexPath)")
     }
   }
-}
-
-public protocol SiberianCollectionDelegate: class {
-  func didSelect(item: CollectionModel, at indexPath: IndexPath)
-  func didDelete(item: CollectionModel, at indexPath: IndexPath)
-  func didEdit(item: CollectionModel, at indexPath: IndexPath)
-  func didInvoke(item: CollectionModel, at indexPath: IndexPath)
 }

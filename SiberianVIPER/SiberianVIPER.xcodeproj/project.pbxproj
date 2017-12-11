@@ -16,6 +16,9 @@
 		3963E0A61FA824EB00FD701D /* Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A51FA824EB00FD701D /* Startable.swift */; };
 		3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A71FA8251600FD701D /* Presenter+Startable.swift */; };
 		3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0AA1FA825B600FD701D /* SiberianCollection.swift */; };
+		39D6E0141FDEB6710031A670 /* SiberianCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6E0131FDEB6710031A670 /* SiberianCollectionDelegate.swift */; };
+		39D6E0161FDEB6C30031A670 /* CollectionChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6E0151FDEB6C30031A670 /* CollectionChange.swift */; };
+		39D6E0181FDEB7010031A670 /* UIKit+Siberia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6E0171FDEB7010031A670 /* UIKit+Siberia.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		3963E0A51FA824EB00FD701D /* Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startable.swift; sourceTree = "<group>"; };
 		3963E0A71FA8251600FD701D /* Presenter+Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Presenter+Startable.swift"; sourceTree = "<group>"; };
 		3963E0AA1FA825B600FD701D /* SiberianCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiberianCollection.swift; sourceTree = "<group>"; };
+		39D6E0131FDEB6710031A670 /* SiberianCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiberianCollectionDelegate.swift; sourceTree = "<group>"; };
+		39D6E0151FDEB6C30031A670 /* CollectionChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChange.swift; sourceTree = "<group>"; };
+		39D6E0171FDEB7010031A670 /* UIKit+Siberia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Siberia.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +81,6 @@
 				3963E0A91FA8259600FD701D /* Collection */,
 				3963E0A41FA824DE00FD701D /* Startable */,
 				3963E09D1FA8243300FD701D /* Closeable */,
-				3963E0991FA8217500FD701D /* CollectionModelGeneric.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -103,7 +108,11 @@
 		3963E0A91FA8259600FD701D /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				3963E0991FA8217500FD701D /* CollectionModelGeneric.swift */,
 				3963E0AA1FA825B600FD701D /* SiberianCollection.swift */,
+				39D6E0131FDEB6710031A670 /* SiberianCollectionDelegate.swift */,
+				39D6E0151FDEB6C30031A670 /* CollectionChange.swift */,
+				39D6E0171FDEB7010031A670 /* UIKit+Siberia.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -193,6 +202,9 @@
 				3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */,
 				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
 				3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */,
+				39D6E0161FDEB6C30031A670 /* CollectionChange.swift in Sources */,
+				39D6E0141FDEB6710031A670 /* SiberianCollectionDelegate.swift in Sources */,
+				39D6E0181FDEB7010031A670 /* UIKit+Siberia.swift in Sources */,
 				3963E0A61FA824EB00FD701D /* Startable.swift in Sources */,
 				3963E09A1FA8217500FD701D /* CollectionModelGeneric.swift in Sources */,
 				3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */,
