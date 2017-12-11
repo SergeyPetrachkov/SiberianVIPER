@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol CellViewAnyModel {
+public protocol CollectionModel {
   static var cellAnyType: UIView.Type { get }
   func setupAny(cell: UIView)
 }
@@ -24,7 +24,7 @@ public protocol CellViewAnyModel {
 ///         var participants: [UserViewModel]
 ///       }
 ///
-///       extension NoteViewModel: CellViewModel {
+///       extension NoteViewModel: CollectionModelGeneric {
 ///         func setup(cell: NoteCell) {
 ///           cell.textLabel?.text = self.text
 ///         }
@@ -38,12 +38,12 @@ public protocol CellViewAnyModel {
 ///
 /// So you control and configure your cells through their view models
 /// This is encouraged by one of CocoaHeads meetups
-public protocol CellViewModel: CellViewAnyModel {
+public protocol CollectionModelGeneric: CollectionModel {
   associatedtype CellType: UIView
   func setup(cell: CellType)
 }
 
-public extension CellViewModel {
+public extension CollectionModelGeneric {
   var cellAnyType: UIView.Type {
     return CellType.self
   }
@@ -53,7 +53,7 @@ public extension CellViewModel {
 }
 
 public extension UITableView {
-  func dequeueReusableCell<T: CellViewModel>(withModel model: T, for indexPath: IndexPath) -> UITableViewCell {
+  func dequeueReusableCell<T: CollectionModelGeneric>(withModel model: T, for indexPath: IndexPath) -> UITableViewCell {
     let identifier = String(describing: T.CellType.self)
     let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
     if let cell = cell as? T.CellType {
@@ -62,7 +62,7 @@ public extension UITableView {
     return cell
   }
   
-  func dequeueReusableCell(withModel model: CellViewAnyModel, for indexPath: IndexPath) -> UITableViewCell {
+  func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UITableViewCell {
     let identifier = String(describing: type(of: model).cellAnyType)
     let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
     model.setupAny(cell: cell)
@@ -72,7 +72,7 @@ public extension UITableView {
 
 public extension UICollectionView {
   
-  func dequeueReusableCell<T: CellViewModel>(withModel model: T, for indexPath: IndexPath) -> UICollectionViewCell {
+  func dequeueReusableCell<T: CollectionModelGeneric>(withModel model: T, for indexPath: IndexPath) -> UICollectionViewCell {
     let identifier = String(describing: T.CellType.self)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     if let cell = cell as? T.CellType {
@@ -81,7 +81,7 @@ public extension UICollectionView {
     return cell
   }
   
-  public func dequeueReusableCell(withModel model: CellViewAnyModel, for indexPath: IndexPath) -> UICollectionViewCell {
+  public func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UICollectionViewCell {
     let identifier = String(describing: type(of: model).cellAnyType)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     model.setupAny(cell: cell)

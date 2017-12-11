@@ -48,7 +48,7 @@ public enum CollectionChange {
 ///
 ///            }
 public protocol SiberianCollectionSource: AnySiberianCollectionSource {
-  associatedtype ItemType = CellViewAnyModel
+  associatedtype ItemType = CollectionModel
   var items: [ItemType] { get }
   
   var changeSet: [CollectionChange] { get }
@@ -59,12 +59,12 @@ public protocol SiberianCollectionSource: AnySiberianCollectionSource {
   
 }
 public extension SiberianCollectionSource {
-  var AnyType: CellViewAnyModel.Type {
-    return (ItemType.self as! CellViewAnyModel.Type).self
+  var AnyType: CollectionModel.Type {
+    return (ItemType.self as! CollectionModel.Type).self
   }
   
-  func anyItem(for indexPath: IndexPath) -> CellViewAnyModel? {
-    return self.item(for: indexPath) as? CellViewAnyModel
+  func anyItem(for indexPath: IndexPath) -> CollectionModel? {
+    return self.item(for: indexPath) as? CollectionModel
   }
   
   func numberOfAnyItems(in section: Int) -> Int {
@@ -73,14 +73,14 @@ public extension SiberianCollectionSource {
 }
 
 public protocol AnySiberianCollectionSource {
-  var AnyType: CellViewAnyModel.Type { get }
+  var AnyType: CollectionModel.Type { get }
   // MARK: - Sections
   func numberOfSections() -> Int
   
-  func modelForSection(at index: Int) -> CellViewAnyModel?
+  func modelForSection(at index: Int) -> CollectionModel?
   func heightForSection(at index: Int) -> CGFloat
   // MARK: - Items
-  func anyItem(for indexPath: IndexPath) -> CellViewAnyModel?
+  func anyItem(for indexPath: IndexPath) -> CollectionModel?
   func numberOfAnyItems(in section: Int) -> Int
 }
 
@@ -117,5 +117,5 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
 }
 
 public protocol SiberianCollectionDelegate: class {
-  func didSelect(item: CellViewAnyModel, at indexPath: IndexPath)
+  func didSelect(item: CollectionModel, at indexPath: IndexPath)
 }

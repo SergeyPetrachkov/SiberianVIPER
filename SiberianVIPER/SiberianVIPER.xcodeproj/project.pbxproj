@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3963E0921FA8206900FD701D /* SiberianVIPER.h in Headers */ = {isa = PBXBuildFile; fileRef = 3963E0901FA8206900FD701D /* SiberianVIPER.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3963E09A1FA8217500FD701D /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0991FA8217500FD701D /* CellViewModel.swift */; };
+		3963E09A1FA8217500FD701D /* CollectionModelGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0991FA8217500FD701D /* CollectionModelGeneric.swift */; };
 		3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E09B1FA8240A00FD701D /* Closeable.swift */; };
 		3963E09F1FA8244500FD701D /* UIView+Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E09E1FA8244500FD701D /* UIView+Closeable.swift */; };
 		3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */; };
@@ -22,7 +22,7 @@
 		3963E08D1FA8206900FD701D /* SiberianVIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SiberianVIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3963E0901FA8206900FD701D /* SiberianVIPER.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiberianVIPER.h; sourceTree = "<group>"; };
 		3963E0911FA8206900FD701D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3963E0991FA8217500FD701D /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		3963E0991FA8217500FD701D /* CollectionModelGeneric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModelGeneric.swift; sourceTree = "<group>"; };
 		3963E09B1FA8240A00FD701D /* Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closeable.swift; sourceTree = "<group>"; };
 		3963E09E1FA8244500FD701D /* UIView+Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Closeable.swift"; sourceTree = "<group>"; };
 		3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Closeable.swift"; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 				3963E0A91FA8259600FD701D /* Collection */,
 				3963E0A41FA824DE00FD701D /* Startable */,
 				3963E09D1FA8243300FD701D /* Closeable */,
-				3963E0991FA8217500FD701D /* CellViewModel.swift */,
+				3963E0991FA8217500FD701D /* CollectionModelGeneric.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -194,7 +194,7 @@
 				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
 				3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */,
 				3963E0A61FA824EB00FD701D /* Startable.swift in Sources */,
-				3963E09A1FA8217500FD701D /* CellViewModel.swift in Sources */,
+				3963E09A1FA8217500FD701D /* CollectionModelGeneric.swift in Sources */,
 				3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
