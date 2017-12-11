@@ -118,4 +118,7 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
 
 public protocol SiberianCollectionDelegate: class {
   func didSelect(item: CollectionModel, at indexPath: IndexPath)
+  func didDelete(item: CollectionModel, at indexPath: IndexPath)
+  func didEdit(item: CollectionModel, at indexPath: IndexPath)
+  func didInvoke(item: CollectionModel, at indexPath: IndexPath)
 }
