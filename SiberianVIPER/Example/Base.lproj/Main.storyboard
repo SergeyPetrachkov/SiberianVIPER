@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Apd-CY-4kn">
+            <objects>
+                <navigationController storyboardIdentifier="WelcomeNav" id="raJ-Ta-D7g" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eWO-DQ-XoC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Vv3-lk-83L" kind="relationship" relationship="rootViewController" id="G91-9K-IRH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TtH-bP-K0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-415" y="29"/>
+        </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="A8i-ZW-OF5">
+            <objects>
+                <viewController storyboardIdentifier="Welcome" id="Vv3-lk-83L" customClass="WelcomeViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D8m-kG-Bwg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here is a sample project" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ds-j5-HgN">
+                                <rect key="frame" x="16" y="80" width="343" height="571"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5u-tN-EXG">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gjz-B1-KUT">
+                                        <rect key="frame" x="169" y="283" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.6951749559859155" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8vV-cQ-M37" firstAttribute="trailing" secondItem="2ds-j5-HgN" secondAttribute="trailing" constant="16" id="1sr-vp-bWY"/>
+                            <constraint firstItem="2ds-j5-HgN" firstAttribute="top" secondItem="8vV-cQ-M37" secondAttribute="top" constant="16" id="JvA-DU-W8u"/>
+                            <constraint firstItem="8vV-cQ-M37" firstAttribute="trailing" secondItem="z5u-tN-EXG" secondAttribute="trailing" id="L5q-Lp-IpK"/>
+                            <constraint firstItem="2ds-j5-HgN" firstAttribute="leading" secondItem="8vV-cQ-M37" secondAttribute="leading" constant="16" id="QrU-sd-lEH"/>
+                            <constraint firstItem="8vV-cQ-M37" firstAttribute="bottom" secondItem="z5u-tN-EXG" secondAttribute="bottom" id="UeM-dT-1zo"/>
+                            <constraint firstItem="z5u-tN-EXG" firstAttribute="leading" secondItem="8vV-cQ-M37" secondAttribute="leading" id="UjE-MX-qQZ"/>
+                            <constraint firstItem="z5u-tN-EXG" firstAttribute="top" secondItem="8vV-cQ-M37" secondAttribute="top" id="xR6-ej-Jci"/>
+                            <constraint firstItem="8vV-cQ-M37" firstAttribute="bottom" secondItem="2ds-j5-HgN" secondAttribute="bottom" constant="16" id="yok-Tc-sbc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8vV-cQ-M37"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0Vz-bD-AXS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="jb3-ll-Nex"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="NMz-6L-Wb3"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="explanationLabel" destination="2ds-j5-HgN" id="F0l-Wz-UNa"/>
+                        <outlet property="nextButton" destination="NMz-6L-Wb3" id="chu-0r-JNu"/>
+                        <outlet property="progressOverlay" destination="z5u-tN-EXG" id="lUz-0a-M8Y"/>
+                        <outlet property="refreshButton" destination="jb3-ll-Nex" id="upl-nQ-A2E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uDy-mW-J8F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="374" y="28"/>
+        </scene>
+    </scenes>
+</document>
