@@ -10,49 +10,55 @@
 //
 
 import UIKit
+import SiberianVIPER
 
-protocol WelcomePresenterInput: class {
+protocol WelcomePresenterInput: AwaitablePresenter, Startable, CloseableModule {
   var view: UIViewController! { get set }
   var output: WelcomePresenterOutput? { get set }
   var router : WelcomeRoutingLogic? { get set }
   var interactor : WelcomeInteractorInput? { get set }
   func presentSomething()
 }
-protocol WelcomePresenterOutput: class {
+protocol WelcomePresenterOutput: AwaitableOutput {
   func didChangeState(viewModel : Welcome.DataContext.ViewModel)
 }
 
-class WelcomePresenter: WelcomePresenterInput {
+class WelcomePresenter: SiberianPresenter, WelcomePresenterInput {
   // MARK: - Essentials
   weak var view: UIViewController!
   weak var output : WelcomePresenterOutput?
-  var viewModel : Welcome.DataContext.ViewModel? {
-    didSet{
-      guard let viewModel = self.viewModel else {
-        return
-        //or do something else like show placeholder
-      }
-      self.output?.didChangeState(viewModel: viewModel)
-    }
-  }
+  var viewModel : Welcome.DataContext.ViewModel
   var router : WelcomeRoutingLogic?
   var interactor : WelcomeInteractorInput?
   // MARK: - Initializers
-  init() {
-    
+  override init() {
+    self.viewModel = Welcome.DataContext.ViewModel()
+    super.init()
   }
   deinit {
     print("WelcomePresenter deinit is called")
   }
   // MARK: - Presenter Input
   func presentSomething() {
-    // ask router to navigate somewhere or ask interactor for resources... it's up to you
-    // like:
-    // let requestParams = RequestParams()
-    // self.interactor.getSomeData(requestParams: requestParams)
-    // or:
-    // let routingParams = RoutingParams(firstValue : self.viewModel.firstValue, secondValue: self.viewModel.secondValue)
-    // self.router.showNextModule(from: self.view, with: routingParams)
+    self.enterPendingState(visible: true, blocking: true)
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+      self.output?.didChangeState(viewModel: self.viewModel)
+    })
+  }
+  
+  func enterPendingState(visible: Bool, blocking: Bool) {
+    super.enterPendingState(visible: visible, blocking: blocking)
+    self.viewModel.isBusy = true
+  }
+  
+  func exitPendingState() {
+    super.exitPendingState()
+    self.viewModel.isBusy = false
+  }
+  
+  override func start() {
+    super.start()
+    self.awaitableOutput = self.output
   }
 }
 extension WelcomePresenter : WelcomeInteractorOutput {

@@ -25,6 +25,7 @@ public extension UITableView {
     model.setupAny(cell: cell)
     return cell
   }
+  
 }
 
 public extension UICollectionView {

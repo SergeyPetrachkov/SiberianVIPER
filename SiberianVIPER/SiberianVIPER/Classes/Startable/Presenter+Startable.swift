@@ -27,73 +27,56 @@ public protocol Interactor {
 public protocol View {
   
 }
-public protocol ViewModel {
+public protocol BusyViewModel {
   var isBusy: Bool { get set }
 }
-public protocol CollectionViewModel: ViewModel {
+public protocol CollectionViewModel: BusyViewModel {
   var items: [CollectionModel] { get set }
   var changeSet: [CollectionChange] { get set }
 }
 public protocol Presenter {
-  var view: View! { get set }
-  var output: PresenterOutput? { get set }
-  var router: Router? { get set }
-  var interactor: Interactor? { get set }
-  var moduleOutput: ModuleOutput? { get set }
-  var viewModel: ViewModel! { get set }
 }
 
+public protocol AwaitablePresenter: class, Awaitable {
+  var awaitableOutput: AwaitableOutput? { get set }
+}
+extension AwaitablePresenter {
+  public func enterPendingState(visible: Bool, blocking: Bool) {
+    self.awaitableOutput?.didEnterPendingState(visible: visible, blocking: blocking)
+  }
+  public func exitPendingState() {
+    self.awaitableOutput?.didExitPendingState()
+  }
+}
+
+
 public protocol Awaitable {
-  func enterPendingState(blocking: Bool)
+  func enterPendingState(visible: Bool, blocking: Bool)
   func exitPendingState()
 }
-public protocol AwaitableOutput {
-  func didEnterPendingState(blocking: Bool)
+public protocol AwaitableOutput: class {
+  func didEnterPendingState(visible: Bool, blocking: Bool)
   func didExitPendingState()
 }
 
 public protocol SiberianPresenterOutput: PresenterOutput {
   
 }
-open class SiberianPresenter: Presenter, Startable, CloseableModule {
-  // MARK: - Presenter
-  public var view: View!
+open class SiberianPresenter: AwaitablePresenter, Startable, CloseableModule {
+  // MARK: - Awaitable presenter
+  public weak var awaitableOutput: AwaitableOutput?
   
-  public var viewModel: ViewModel!
-  
-  public var router: Router?
-  
-  public var interactor: Interactor?
-  
-  weak public var moduleOutput: ModuleOutput?
-  
-  weak public var output: PresenterOutput?
-  
+  public init() {
+  }
   // MARK: - Startable
-  public func start() {
+  open func start() {
     
   }
   
-  public func stop() {
+  open func stop() {
     
   }
   // MARK: - Closeable module
   public func requestClose() {
-    if self.view is Closeable {
-      (self.router as? CloseableRouter)?.close(module: self.view as! Closeable)
-    }
-  }
-}
-
-extension SiberianPresenter: Awaitable {
-  // MARK: - Awaitable input
-  public func enterPendingState(blocking: Bool) {
-    self.viewModel.isBusy = true
-    (self.output as? AwaitableOutput)?.didEnterPendingState(blocking: blocking)
-  }
-  
-  public func exitPendingState() {
-    self.viewModel.isBusy = false
-    (self.output as? AwaitableOutput)?.didExitPendingState()
   }
 }

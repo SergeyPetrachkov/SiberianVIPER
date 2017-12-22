@@ -70,24 +70,29 @@ public protocol AnySiberianCollectionSource {
   // MARK: - Sections
   func numberOfSections() -> Int
   
-  func modelForSection(at index: Int) -> CollectionModel?
-  func heightForSection(at index: Int) -> CGFloat
+  func modelForSectionHeader(at index: Int) -> CollectionModel?
+  func heightForSectionHeader(at index: Int) -> CGFloat
+  
+  func modelForSectionFooter(at index: Int) -> CollectionModel?
+  func heightForSectionFooter(at index: Int) -> CGFloat
   // MARK: - Items
   func anyItem(for indexPath: IndexPath) -> CollectionModel?
   func numberOfAnyItems(in section: Int) -> Int
 }
 
 
-open class SiberianTableSource: NSObject, UITableViewDataSource {
+open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableViewDelegate {
   public fileprivate(set) var provider: AnySiberianCollectionSource!
+  public fileprivate(set) var delegate: SiberianCollectionDelegate?
   
   fileprivate override init() {
     super.init()
   }
   
-  public convenience init(provider: AnySiberianCollectionSource) {
+  public convenience init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?) {
     self.init()
     self.provider = provider
+    self.delegate = delegate
   }
   
   open func numberOfSections(in tableView: UITableView) -> Int {
@@ -106,5 +111,15 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
     } else {
       fatalError("An error occured while trying to access SiberianTableSource item at indexPath:\(indexPath)")
     }
+  }
+  
+  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let model = self.provider.anyItem(for: indexPath) {
+      self.delegate?.didSelect(item: model,
+                               at: indexPath)
+    }
+    
+    tableView.deselectRow(at: indexPath,
+                          animated: true)
   }
 }

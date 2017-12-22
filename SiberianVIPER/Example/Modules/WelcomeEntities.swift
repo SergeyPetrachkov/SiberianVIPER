@@ -10,7 +10,7 @@
 //
 
 import UIKit
-
+import SiberianVIPER
 enum Welcome {
   // MARK: - Use cases
   enum DataContext {
@@ -18,7 +18,10 @@ enum Welcome {
     }
     struct Response {
     }
-    struct ViewModel {
+    struct ViewModel: BusyViewModel {
+      var isBusy: Bool = false
+      
+      
     }
   }
 }
