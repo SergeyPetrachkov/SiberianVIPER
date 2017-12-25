@@ -17,7 +17,7 @@ protocol WelcomeInteractorInput: class {
 }
 
 protocol WelcomeInteractorOutput: class {
-  func didReceive(some data : Any)
+  func didReceive(response : Welcome.DataContext.Response)
   func didFail(with error: Error)
 }
 
@@ -27,17 +27,28 @@ class WelcomeInteractor: WelcomeInteractorInput {
   
   // MARK: Do something
   func doSomething(request: Welcome.DataContext.Request) {
-    // Let's say we execute some async operation, then we want to be able to inform our output when the operation is finshed
-    // self.service.requestSomeDataAsync(requestParams: params, 
-    //                                          succes: {
-    //                                            receivedData in
-    //                                              self.output?.didReceive(some: receivedData)
-    //                                          }),
-    //                                          failure: {
-    //                                            error in 
-    //                                              NSLog("An error has occured while retrieving some data: \(error)")
-    //                                              self.output?.didFail(error: error)
-    //                                          })
-    self.service.doSomeWork()
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2,
+                                  execute: {
+      self.output?.didReceive(response: Welcome.DataContext.Response(text: String.randomString(length: 25)))
+    })
+  }
+}
+
+public extension String {
+  /// Get a random string of a given length
+  /// - parameters:
+  ///   - length: desired length
+  static func randomString(length: Int) -> String {
+    let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    let len = UInt32(letters.length)
+    
+    var randomString = ""
+    
+    for _ in 0 ..< length {
+      let rand = arc4random_uniform(len)
+      var nextChar = letters.character(at: Int(rand))
+      randomString += NSString(characters: &nextChar, length: 1) as String
+    }
+    return randomString
   }
 }

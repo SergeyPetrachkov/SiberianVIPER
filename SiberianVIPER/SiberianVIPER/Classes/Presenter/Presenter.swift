@@ -27,34 +27,21 @@ public protocol Interactor {
 public protocol View {
   
 }
-public protocol BusyViewModel {
-  var isBusy: Bool { get set }
-}
-public protocol CollectionViewModel: BusyViewModel {
-  var items: [CollectionModel] { get set }
-  var changeSet: [CollectionChange] { get set }
-}
-public protocol Presenter {
-}
 
-public protocol AwaitablePresenter: class, Awaitable {
-  var awaitableOutput: AwaitableOutput? { get set }
-}
-extension AwaitablePresenter {
-  public func enterPendingState(visible: Bool, blocking: Bool) {
-    self.awaitableOutput?.didEnterPendingState(visible: visible, blocking: blocking)
-  }
-  public func exitPendingState() {
-    self.awaitableOutput?.didExitPendingState()
-  }
+public protocol Presenter {
 }
 
 
 public protocol Awaitable {
+  /// Ask an object to go into pending state
+  /// - parameters:
+  ///   - visible: should indicate pending state
+  ///   - blocking: should block interaction with the object
   func enterPendingState(visible: Bool, blocking: Bool)
+  /// Ask an object to exit pending state
   func exitPendingState()
 }
-public protocol AwaitableOutput: class {
+public protocol AwaitableDelegate: class {
   func didEnterPendingState(visible: Bool, blocking: Bool)
   func didExitPendingState()
 }
@@ -62,9 +49,11 @@ public protocol AwaitableOutput: class {
 public protocol SiberianPresenterOutput: PresenterOutput {
   
 }
-open class SiberianPresenter: AwaitablePresenter, Startable, CloseableModule {
+open class SiberianPresenter: Awaitable, Startable, CloseableModule {
+  
   // MARK: - Awaitable presenter
-  public weak var awaitableOutput: AwaitableOutput?
+  open var awaitableModel: BusyViewModel?
+  public weak var awaitableDelegate: AwaitableDelegate?
   
   public init() {
   }
@@ -78,5 +67,13 @@ open class SiberianPresenter: AwaitablePresenter, Startable, CloseableModule {
   }
   // MARK: - Closeable module
   public func requestClose() {
+  }
+  open func enterPendingState(visible: Bool, blocking: Bool) {
+    self.awaitableDelegate?.didEnterPendingState(visible: visible, blocking: blocking)
+    self.awaitableModel?.isBusy = true
+  }
+  open func exitPendingState() {
+    self.awaitableDelegate?.didExitPendingState()
+    self.awaitableModel?.isBusy = false
   }
 }

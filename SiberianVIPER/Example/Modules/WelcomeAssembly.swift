@@ -20,7 +20,7 @@ class WelcomeAssembly {
     if let navController = UIStoryboard(name: storyboardId,
                                         bundle: nil).instantiateViewController(withIdentifier: controllerStoryboardId) as? UINavigationController,
       let controller = navController.topViewController as? WelcomeViewController {
-      let presenter = injectPresenter()
+      var presenter = injectPresenter()
       presenter.output = controller
       presenter.view = controller
       controller.presenter = presenter

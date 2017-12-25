@@ -14,8 +14,10 @@
 		3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */; };
 		3963E0A31FA8248E00FD701D /* CloseableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A21FA8248E00FD701D /* CloseableRouter.swift */; };
 		3963E0A61FA824EB00FD701D /* Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A51FA824EB00FD701D /* Startable.swift */; };
-		3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A71FA8251600FD701D /* Presenter+Startable.swift */; };
+		3963E0A81FA8251600FD701D /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A71FA8251600FD701D /* Presenter.swift */; };
 		3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0AA1FA825B600FD701D /* SiberianCollection.swift */; };
+		39C6A9801FECC4BA005D40C5 /* BusyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6A97F1FECC4BA005D40C5 /* BusyViewModel.swift */; };
+		39C6A9821FECC4CB005D40C5 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6A9811FECC4CB005D40C5 /* CollectionViewModel.swift */; };
 		39CC0B1D1FE17A33008144D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC0B1C1FE17A33008144D3 /* AppDelegate.swift */; };
 		39CC0B221FE17A33008144D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CC0B201FE17A33008144D3 /* Main.storyboard */; };
 		39CC0B241FE17A33008144D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CC0B231FE17A33008144D3 /* Assets.xcassets */; };
@@ -32,6 +34,16 @@
 		39D6E0181FDEB7010031A670 /* UIKit+Siberia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6E0171FDEB7010031A670 /* UIKit+Siberia.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		398C51F51FF08F1700FE2FF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3963E0841FA8206900FD701D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3963E08C1FA8206900FD701D;
+			remoteInfo = SiberianVIPER;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3963E08D1FA8206900FD701D /* SiberianVIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SiberianVIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3963E0901FA8206900FD701D /* SiberianVIPER.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiberianVIPER.h; sourceTree = "<group>"; };
@@ -42,8 +54,10 @@
 		3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Closeable.swift"; sourceTree = "<group>"; };
 		3963E0A21FA8248E00FD701D /* CloseableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseableRouter.swift; sourceTree = "<group>"; };
 		3963E0A51FA824EB00FD701D /* Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startable.swift; sourceTree = "<group>"; };
-		3963E0A71FA8251600FD701D /* Presenter+Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Presenter+Startable.swift"; sourceTree = "<group>"; };
+		3963E0A71FA8251600FD701D /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		3963E0AA1FA825B600FD701D /* SiberianCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiberianCollection.swift; sourceTree = "<group>"; };
+		39C6A97F1FECC4BA005D40C5 /* BusyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyViewModel.swift; sourceTree = "<group>"; };
+		39C6A9811FECC4CB005D40C5 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		39CC0B1A1FE17A33008144D3 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CC0B1C1FE17A33008144D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39CC0B211FE17A33008144D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +125,8 @@
 		3963E0981FA8208100FD701D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				39C6A97E1FECC4A7005D40C5 /* ViewModel */,
+				39C6A97D1FECC482005D40C5 /* Presenter */,
 				3963E0A91FA8259600FD701D /* Collection */,
 				3963E0A41FA824DE00FD701D /* Startable */,
 				3963E09D1FA8243300FD701D /* Closeable */,
@@ -133,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				3963E0A51FA824EB00FD701D /* Startable.swift */,
-				3963E0A71FA8251600FD701D /* Presenter+Startable.swift */,
 			);
 			path = Startable;
 			sourceTree = "<group>";
@@ -148,6 +163,23 @@
 				39D6E0171FDEB7010031A670 /* UIKit+Siberia.swift */,
 			);
 			path = Collection;
+			sourceTree = "<group>";
+		};
+		39C6A97D1FECC482005D40C5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3963E0A71FA8251600FD701D /* Presenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		39C6A97E1FECC4A7005D40C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				39C6A97F1FECC4BA005D40C5 /* BusyViewModel.swift */,
+				39C6A9811FECC4CB005D40C5 /* CollectionViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		39CC0B1B1FE17A33008144D3 /* Example */ = {
@@ -220,6 +252,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				398C51F61FF08F1700FE2FF3 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -293,6 +326,7 @@
 			files = (
 				3963E09F1FA8244500FD701D /* UIView+Closeable.swift in Sources */,
 				3963E0A31FA8248E00FD701D /* CloseableRouter.swift in Sources */,
+				39C6A9821FECC4CB005D40C5 /* CollectionViewModel.swift in Sources */,
 				3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */,
 				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
 				3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */,
@@ -300,8 +334,9 @@
 				39D6E0141FDEB6710031A670 /* SiberianCollectionDelegate.swift in Sources */,
 				39D6E0181FDEB7010031A670 /* UIKit+Siberia.swift in Sources */,
 				3963E0A61FA824EB00FD701D /* Startable.swift in Sources */,
+				39C6A9801FECC4BA005D40C5 /* BusyViewModel.swift in Sources */,
 				3963E09A1FA8217500FD701D /* CollectionModelGeneric.swift in Sources */,
-				3963E0A81FA8251600FD701D /* Presenter+Startable.swift in Sources */,
+				3963E0A81FA8251600FD701D /* Presenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +356,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		398C51F61FF08F1700FE2FF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3963E08C1FA8206900FD701D /* SiberianVIPER */;
+			targetProxy = 398C51F51FF08F1700FE2FF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		39CC0B201FE17A33008144D3 /* Main.storyboard */ = {

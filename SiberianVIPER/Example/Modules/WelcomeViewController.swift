@@ -55,15 +55,15 @@ class WelcomeViewController: UIViewController {
   }
 }
 extension WelcomeViewController : WelcomePresenterOutput {
+  func didChangeState(viewModel: Welcome.DataContext.ViewModel) {
+    
+  }
+  
   func didEnterPendingState(visible: Bool, blocking: Bool) {
     self.progressOverlay.isHidden = false
   }
   
   func didExitPendingState() {
     self.progressOverlay.isHidden = true
-  }
-  
-  func didChangeState(viewModel : Welcome.DataContext.ViewModel) {
-    self.presenter?.exitPendingState()
   }
 }

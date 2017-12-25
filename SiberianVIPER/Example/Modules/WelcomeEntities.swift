@@ -17,11 +17,11 @@ enum Welcome {
     struct Request {
     }
     struct Response {
+      let text: String
     }
     struct ViewModel: BusyViewModel {
       var isBusy: Bool = false
-      
-      
+      var text: String = ""
     }
   }
 }
