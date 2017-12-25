@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension UIViewController: Closeable {
   public func close(animated: Bool, completion: (() -> Void)?) {
     if let navigationController = self.navigationController, navigationController.topViewController != self {
