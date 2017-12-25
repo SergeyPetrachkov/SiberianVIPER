@@ -17,17 +17,14 @@ protocol ListPresenterInput: Awaitable, Startable, CloseableModule {
   var output: ListPresenterOutput? { get set }
   var router : ListRoutingLogic? { get set }
   var interactor : ListInteractorInput? { get set }
-  func presentSomething()
+  func refresh()
+  func fetch()
 }
 protocol ListPresenterOutput: AwaitableDelegate {
   func didChangeState(viewModel : List.DataContext.ViewModel)
 }
 
 class ListPresenter: CollectionPresenter, ListPresenterInput {
-  func presentSomething() {
-    
-  }
-  
   // MARK: - Essentials
   weak var view: UIViewController!
   weak var output : ListPresenterOutput?
@@ -47,25 +44,94 @@ class ListPresenter: CollectionPresenter, ListPresenterInput {
     print("ListPresenter deinit is called")
   }
   // MARK: - Presenter Input
+  
+  func refresh() {
+    self.fetchItems(reset: true)
+  }
+  func fetch() {
+    self.fetchItems(reset: false)
+  }
+  // MARK: - Startable
   override func start() {
     super.start()
     self.awaitableDelegate = self.output
     self.awaitableModel = self.viewModel
+    self.collectionModel = self.viewModel
     self.fetchItems(reset: true)
   }
+  // MARK: - Base overrides
   @discardableResult override func fetchItems(reset: Bool) -> (skip: Int, take: Int) {
+    if self.viewModel.isBusy {
+      return (0,0)
+    }
     let skipTake = super.fetchItems(reset: reset)
-    
+    self.interactor?.requestItems(request: List.DataContext.Request(skip: skipTake.skip, take: skipTake.take))
     return skipTake
+  }
+  
+  override func exitPendingState() {
+    super.exitPendingState()
+    self.viewModel.changeSet = []
   }
 }
 extension ListPresenter : ListInteractorOutput {
   // MARK: - Interactor output
-  func didReceive(some data: Any) {
-    // Process it and act accordingly like:
-    // self.output?.didChangeState(viewModel : )
+  func didReceive(response: List.DataContext.Response) {
+    if response.originalRequest.skip == 0 {
+      self.viewModel.items = []
+    }
+    response.items.enumerated().forEach({ (offset, _) in
+      self.viewModel.changeSet.append(.new(IndexPath(row: self.viewModel.items.count + offset, section: 0)))
+    })
+    
+    self.viewModel.items.append(contentsOf: response.items as [CollectionModel])
+    self.output?.didChangeState(viewModel: self.viewModel)
   }
   func didFail(with error: Error) {
-//    self.router.showError(error: error)
+    self.exitPendingState()
+  }
+}
+extension ListPresenter: SiberianCollectionSource {
+  func modelForSectionHeader(at index: Int) -> CollectionModel? {
+    return nil
+  }
+  
+  func heightForSectionHeader(at index: Int) -> CGFloat {
+    return 0
+  }
+  
+  func modelForSectionFooter(at index: Int) -> CollectionModel? {
+    return nil
+  }
+  
+  func heightForSectionFooter(at index: Int) -> CGFloat {
+    return 0
+  }
+  
+  func modelForSection(at index: Int) -> CollectionModel? {
+    return nil
+  }
+  
+  func numberOfSections() -> Int {
+    return 1
+  }
+  
+  var items: [CollectionModel] {
+    return self.viewModel.items
+  }
+  
+  var changeSet: [CollectionChange] {
+    return self.viewModel.changeSet
+  }
+  
+  func item(for indexPath: IndexPath) -> CollectionModel? {
+    if indexPath.row >= self.items.count {
+      return nil
+    }
+    return self.items[indexPath.row]
+  }
+  
+  func numberOfItems(in section: Int) -> Int {
+    return self.items.count
   }
 }

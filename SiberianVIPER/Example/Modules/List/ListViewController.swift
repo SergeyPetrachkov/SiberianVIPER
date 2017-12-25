@@ -11,18 +11,35 @@
 
 import UIKit
 import SiberianVIPER
+class ListDisplayManager: SiberianCollectionManager {
+  var fetchManager: ListPresenterInput?
+  public convenience init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?, fetchManager: ListPresenterInput?) {
+    self.init(provider: provider, delegate: delegate)  
+    self.fetchManager = fetchManager
+  }
+  
+  
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let bottomEdge = targetContentOffset.pointee.y + scrollView.frame.size.height
+    if bottomEdge >= scrollView.contentSize.height {
+      self.fetchManager?.fetch()
+    }
+  }
+}
 class ListViewController: UITableViewController {
   // MARK: - UI properties
  
   // MARK: - Essentials
   var presenter : ListPresenterInput?
-  lazy var displayManager: SiberianCollectionManager? = { [weak self] in
+  lazy var displayManager: ListDisplayManager? = { [weak self] in
     guard let strongSelf = self,
       let provider = strongSelf.presenter as? AnySiberianCollectionSource else {
         return nil
     }
-    let manager = SiberianCollectionManager(provider: provider,
-                                             delegate: strongSelf.presenter as? SiberianCollectionDelegate)
+    let manager = ListDisplayManager(provider: provider,
+                                     delegate: strongSelf.presenter as? SiberianCollectionDelegate,
+                                     fetchManager: strongSelf.presenter)
+    
     
     return manager
   }()
@@ -37,32 +54,52 @@ class ListViewController: UITableViewController {
   
   // MARK: - Setup
   private func setup() {
+    self.tableView.tableFooterView = UIView()
     self.tableView.dataSource = self.displayManager
     self.tableView.delegate = self.displayManager
+    self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
     self.refreshControl?.tintColor = UIColor.darkGray
   }
   
   // MARK: - Lifecycle
+  var refreshing: Bool = false
   override func viewDidLoad() {
     super.viewDidLoad()
     self.setup()
+    self.presenter?.start()
   }
   
   // MARK: - Actions
   @objc fileprivate func handleRefresh(_ refreshControl: UIRefreshControl) {
-//    self.presenter?.fetchItems(reset: true)
+    self.presenter?.refresh()
   }
+  
+  // MARK: - UIScrollViewDelegate
+  
+  override func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                 withVelocity velocity: CGPoint,
+                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let bottomEdge = targetContentOffset.pointee.y + scrollView.frame.size.height
+    if bottomEdge >= scrollView.contentSize.height {
+      DispatchQueue.global().asyncAfter(deadline: .now() + 0.3, execute: {
+        self.presenter?.fetch()
+      })
+    }
+  }
+  
 }
 extension ListViewController : ListPresenterOutput {
   func didEnterPendingState(visible: Bool, blocking: Bool) {
     self.tableView.isUserInteractionEnabled = !blocking
-//    self.progressOverlay.isHidden = false
+    if visible {
+      self.refreshControl?.beginRefreshing()
+    }
   }
   
   func didExitPendingState() {
     self.tableView.isUserInteractionEnabled = true
-//    self.progressOverlay.isHidden = true
+    self.refreshControl?.endRefreshing()
   }
   func didChangeState(viewModel : List.DataContext.ViewModel) {
     if viewModel.changeSet.count == 0 {
@@ -91,13 +128,13 @@ extension ListViewController : ListPresenterOutput {
     if #available(iOS 11.0, *) {
       self.tableView.performBatchUpdates({
         if deletedIndexPaths.count > 0 {
-          self.tableView.deleteRows(at: deletedIndexPaths, with: .top)
+          self.tableView.deleteRows(at: deletedIndexPaths, with: .automatic)
         }
         if newIndexPaths.count > 0 {
-          self.tableView.insertRows(at: newIndexPaths, with: .top)
+          self.tableView.insertRows(at: newIndexPaths, with: .automatic)
         }
         if editedIndexPaths.count > 0 {
-          self.tableView.reloadRows(at: editedIndexPaths, with: .bottom)
+          self.tableView.reloadRows(at: editedIndexPaths, with: .automatic)
         }
       }, completion: { result in
         print("list batch update ended with result: \(result) \n\rtotal: \(viewModel.items.count) \n\rnew:\(newIndexPaths.count) \n\rchanged: \(editedIndexPaths.count) \n\rdeleted: \(deletedIndexPaths.count)")

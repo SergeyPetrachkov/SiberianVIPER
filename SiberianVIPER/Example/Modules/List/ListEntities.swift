@@ -20,8 +20,10 @@ enum List {
       let take: Int
     }
     struct Response {
+      let originalRequest: Request
+      let items: [ListItemModel]
     }
-    struct ViewModel: CollectionViewModel {
+    class ViewModel: CollectionViewModel {
       var batchSize: Int = 20
       
       var items: [CollectionModel] = []

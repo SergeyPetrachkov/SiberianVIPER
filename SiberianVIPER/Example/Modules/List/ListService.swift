@@ -12,10 +12,23 @@
 import UIKit
 
 protocol ListServiceProtocol: class {
-  func doSomeWork()	
+  func getItems(request: List.DataContext.Request,
+                   success: @escaping ([Item]) -> Void,
+                   failure: @escaping (Error) -> Void)
 }
 
 class ListService: ListServiceProtocol {
-  func doSomeWork() {
+  func getItems(request: List.DataContext.Request,
+                success: @escaping ([Item]) -> Void,
+                failure: @escaping (Error) -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1,
+                                  execute: {
+                                    success([Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024))),
+                                             Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024))),
+                                             Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024))),
+                                             Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024))),
+                                             Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024))),
+                                             Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024)))])
+    })
   }
 }

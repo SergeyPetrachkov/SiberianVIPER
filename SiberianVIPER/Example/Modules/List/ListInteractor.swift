@@ -13,11 +13,11 @@ import UIKit
 
 protocol ListInteractorInput: class {
   var output : ListInteractorOutput? { get set }
-  func doSomething(request: List.DataContext.Request)
+  func requestItems(request: List.DataContext.Request)
 }
 
 protocol ListInteractorOutput: class {
-  func didReceive(some data : Any)
+  func didReceive(response: List.DataContext.Response)
   func didFail(with error: Error)
 }
 
@@ -26,7 +26,15 @@ class ListInteractor: ListInteractorInput {
   weak var output: ListInteractorOutput?
   
   // MARK: Do something
-  func doSomething(request: List.DataContext.Request) {
-    self.service.doSomeWork()
+  func requestItems(request: List.DataContext.Request) {
+    self.service.getItems(request: request,
+                          success: { items in
+                            let models = items.map({ ListItemModel(currentModel: $0) })
+                            self.output?.didReceive(response: List.DataContext.Response(originalRequest: request,
+                                                                                        items: models))
+    },
+                          failure: { error in
+                            self.output?.didFail(with: error)
+    })
   }
 }

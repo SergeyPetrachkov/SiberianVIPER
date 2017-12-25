@@ -50,15 +50,15 @@ public protocol AnySiberianCollectionSource {
 
 
 open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableViewDelegate {
-  public fileprivate(set) var provider: AnySiberianCollectionSource!
-  public fileprivate(set) var delegate: SiberianCollectionDelegate?
+  open fileprivate(set) var provider: AnySiberianCollectionSource!
+  open fileprivate(set) var delegate: SiberianCollectionDelegate?
   
   fileprivate override init() {
     super.init()
   }
   
-  public convenience init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?) {
-    self.init()
+  public init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?) {
+    super.init()
     self.provider = provider
     self.delegate = delegate
   }
