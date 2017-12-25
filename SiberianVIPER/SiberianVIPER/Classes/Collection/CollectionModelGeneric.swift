@@ -14,7 +14,7 @@ protocol SelfSizingModel {
 }
 
 public protocol CollectionModel {
-  static var cellAnyType: UIView.Type { get }
+  static var anyViewType: UIView.Type { get }
   func setupAny(view: UIView)
 }
 

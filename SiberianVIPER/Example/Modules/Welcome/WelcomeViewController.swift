@@ -51,7 +51,7 @@ class WelcomeViewController: UIViewController {
     self.presenter?.presentSomething()
   }
   @objc fileprivate func didTapNext() {
-    self.explanationLabel.text = "didTapNext"
+    self.presenter?.showList()
   }
 }
 extension WelcomeViewController : WelcomePresenterOutput {

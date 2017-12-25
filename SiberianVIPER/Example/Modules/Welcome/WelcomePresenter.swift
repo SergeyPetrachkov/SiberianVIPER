@@ -18,6 +18,7 @@ protocol WelcomePresenterInput: Awaitable, Startable, CloseableModule {
   var router : WelcomeRoutingLogic? { get set }
   var interactor : WelcomeInteractorInput? { get set }
   func presentSomething()
+  func showList()
 }
 protocol WelcomePresenterOutput: AwaitableDelegate {
   func didChangeState(viewModel : Welcome.DataContext.ViewModel)
@@ -50,7 +51,9 @@ class WelcomePresenter: SiberianPresenter, WelcomePresenterInput {
     self.enterPendingState(visible: true, blocking: true)
     self.interactor?.doSomething(request: Welcome.DataContext.Request())
   }
-  
+  func showList() {
+    self.router?.openList(from: self.view, routingParams: Welcome.DataContext.ModuleOut())
+  }
   // MARK: - Startable
   override func start() {
     super.start()

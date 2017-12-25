@@ -14,6 +14,9 @@ import SiberianVIPER
 enum Welcome {
   // MARK: - Use cases
   enum DataContext {
+    struct ModuleOut {
+      
+    }
     struct Request {
     }
     struct Response {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3936C9C51FF0E01400F3A3E7 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3936C9C41FF0E01400F3A3E7 /* ListCell.swift */; };
 		3963E0921FA8206900FD701D /* SiberianVIPER.h in Headers */ = {isa = PBXBuildFile; fileRef = 3963E0901FA8206900FD701D /* SiberianVIPER.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3963E09A1FA8217500FD701D /* CollectionModelGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0991FA8217500FD701D /* CollectionModelGeneric.swift */; };
 		3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E09B1FA8240A00FD701D /* Closeable.swift */; };
@@ -18,6 +19,14 @@
 		3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0AA1FA825B600FD701D /* SiberianCollection.swift */; };
 		398C51F91FF0A2EF00FE2FF3 /* CloseableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C51F81FF0A2EF00FE2FF3 /* CloseableModule.swift */; };
 		398C51FD1FF0A33100FE2FF3 /* Awaitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C51FC1FF0A33100FE2FF3 /* Awaitable.swift */; };
+		398C52191FF0A83A00FE2FF3 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52121FF0A83A00FE2FF3 /* ListPresenter.swift */; };
+		398C521A1FF0A83A00FE2FF3 /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52131FF0A83A00FE2FF3 /* ListRouter.swift */; };
+		398C521B1FF0A83A00FE2FF3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52141FF0A83A00FE2FF3 /* ListViewController.swift */; };
+		398C521C1FF0A83A00FE2FF3 /* ListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52151FF0A83A00FE2FF3 /* ListAssembly.swift */; };
+		398C521D1FF0A83A00FE2FF3 /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52161FF0A83A00FE2FF3 /* ListInteractor.swift */; };
+		398C521E1FF0A83A00FE2FF3 /* ListEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52171FF0A83A00FE2FF3 /* ListEntities.swift */; };
+		398C521F1FF0A83A00FE2FF3 /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52181FF0A83A00FE2FF3 /* ListService.swift */; };
+		398C52211FF0AB8300FE2FF3 /* CollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C52201FF0AB8300FE2FF3 /* CollectionPresenter.swift */; };
 		39C6A9801FECC4BA005D40C5 /* BusyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6A97F1FECC4BA005D40C5 /* BusyViewModel.swift */; };
 		39C6A9821FECC4CB005D40C5 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6A9811FECC4CB005D40C5 /* CollectionViewModel.swift */; };
 		39CC0B1D1FE17A33008144D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC0B1C1FE17A33008144D3 /* AppDelegate.swift */; };
@@ -47,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3936C9C41FF0E01400F3A3E7 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		3963E08D1FA8206900FD701D /* SiberianVIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SiberianVIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3963E0901FA8206900FD701D /* SiberianVIPER.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiberianVIPER.h; sourceTree = "<group>"; };
 		3963E0911FA8206900FD701D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +70,14 @@
 		3963E0AA1FA825B600FD701D /* SiberianCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiberianCollection.swift; sourceTree = "<group>"; };
 		398C51F81FF0A2EF00FE2FF3 /* CloseableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseableModule.swift; sourceTree = "<group>"; };
 		398C51FC1FF0A33100FE2FF3 /* Awaitable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Awaitable.swift; sourceTree = "<group>"; };
+		398C52121FF0A83A00FE2FF3 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
+		398C52131FF0A83A00FE2FF3 /* ListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
+		398C52141FF0A83A00FE2FF3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		398C52151FF0A83A00FE2FF3 /* ListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssembly.swift; sourceTree = "<group>"; };
+		398C52161FF0A83A00FE2FF3 /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
+		398C52171FF0A83A00FE2FF3 /* ListEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEntities.swift; sourceTree = "<group>"; };
+		398C52181FF0A83A00FE2FF3 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
+		398C52201FF0AB8300FE2FF3 /* CollectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPresenter.swift; sourceTree = "<group>"; };
 		39C6A97F1FECC4BA005D40C5 /* BusyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyViewModel.swift; sourceTree = "<group>"; };
 		39C6A9811FECC4CB005D40C5 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		39CC0B1A1FE17A33008144D3 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +116,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3936C9C31FF0E00400F3A3E7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3936C9C41FF0E01400F3A3E7 /* ListCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		3963E0831FA8206900FD701D = {
 			isa = PBXGroup;
 			children = (
@@ -187,10 +213,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		398C52101FF0A78900FE2FF3 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				39CC0B2D1FE17A67008144D3 /* WelcomePresenter.swift */,
+				39CC0B2E1FE17A67008144D3 /* WelcomeRouter.swift */,
+				39CC0B2F1FE17A67008144D3 /* WelcomeViewController.swift */,
+				39CC0B301FE17A67008144D3 /* WelcomeAssembly.swift */,
+				39CC0B311FE17A67008144D3 /* WelcomeInteractor.swift */,
+				39CC0B321FE17A67008144D3 /* WelcomeEntities.swift */,
+				39CC0B331FE17A67008144D3 /* WelcomeService.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		398C52111FF0A81800FE2FF3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				3936C9C31FF0E00400F3A3E7 /* Cells */,
+				398C52121FF0A83A00FE2FF3 /* ListPresenter.swift */,
+				398C52131FF0A83A00FE2FF3 /* ListRouter.swift */,
+				398C52141FF0A83A00FE2FF3 /* ListViewController.swift */,
+				398C52151FF0A83A00FE2FF3 /* ListAssembly.swift */,
+				398C52161FF0A83A00FE2FF3 /* ListInteractor.swift */,
+				398C52171FF0A83A00FE2FF3 /* ListEntities.swift */,
+				398C52181FF0A83A00FE2FF3 /* ListService.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		39C6A97D1FECC482005D40C5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				3963E0A71FA8251600FD701D /* Presenter.swift */,
+				398C52201FF0AB8300FE2FF3 /* CollectionPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -220,13 +276,8 @@
 		39CC0B2C1FE17A41008144D3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				39CC0B2D1FE17A67008144D3 /* WelcomePresenter.swift */,
-				39CC0B2E1FE17A67008144D3 /* WelcomeRouter.swift */,
-				39CC0B2F1FE17A67008144D3 /* WelcomeViewController.swift */,
-				39CC0B301FE17A67008144D3 /* WelcomeAssembly.swift */,
-				39CC0B311FE17A67008144D3 /* WelcomeInteractor.swift */,
-				39CC0B321FE17A67008144D3 /* WelcomeEntities.swift */,
-				39CC0B331FE17A67008144D3 /* WelcomeService.swift */,
+				398C52101FF0A78900FE2FF3 /* Welcome */,
+				398C52111FF0A81800FE2FF3 /* List */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -354,6 +405,7 @@
 				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
 				3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */,
 				39D6E0161FDEB6C30031A670 /* CollectionChange.swift in Sources */,
+				398C52211FF0AB8300FE2FF3 /* CollectionPresenter.swift in Sources */,
 				39D6E0141FDEB6710031A670 /* SiberianCollectionDelegate.swift in Sources */,
 				39D6E0181FDEB7010031A670 /* UIKit+Siberia.swift in Sources */,
 				3963E0A61FA824EB00FD701D /* Startable.swift in Sources */,
@@ -369,12 +421,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				39CC0B371FE17A67008144D3 /* WelcomeAssembly.swift in Sources */,
+				398C52191FF0A83A00FE2FF3 /* ListPresenter.swift in Sources */,
 				39CC0B391FE17A67008144D3 /* WelcomeEntities.swift in Sources */,
 				39CC0B381FE17A67008144D3 /* WelcomeInteractor.swift in Sources */,
 				39CC0B361FE17A67008144D3 /* WelcomeViewController.swift in Sources */,
+				3936C9C51FF0E01400F3A3E7 /* ListCell.swift in Sources */,
+				398C521D1FF0A83A00FE2FF3 /* ListInteractor.swift in Sources */,
+				398C521E1FF0A83A00FE2FF3 /* ListEntities.swift in Sources */,
+				398C521C1FF0A83A00FE2FF3 /* ListAssembly.swift in Sources */,
+				398C521B1FF0A83A00FE2FF3 /* ListViewController.swift in Sources */,
 				39CC0B341FE17A67008144D3 /* WelcomePresenter.swift in Sources */,
 				39CC0B3A1FE17A67008144D3 /* WelcomeService.swift in Sources */,
 				39CC0B1D1FE17A33008144D3 /* AppDelegate.swift in Sources */,
+				398C521F1FF0A83A00FE2FF3 /* ListService.swift in Sources */,
+				398C521A1FF0A83A00FE2FF3 /* ListRouter.swift in Sources */,
 				39CC0B351FE17A67008144D3 /* WelcomeRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

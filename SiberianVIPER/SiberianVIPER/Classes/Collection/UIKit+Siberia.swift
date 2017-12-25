@@ -20,7 +20,7 @@ public extension UITableView {
   }
   
   func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UITableViewCell {
-    let identifier = String(describing: type(of: model).cellAnyType)
+    let identifier = String(describing: type(of: model).anyViewType)
     let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
     model.setupAny(view: cell)
     return cell
@@ -40,7 +40,7 @@ public extension UICollectionView {
   }
   
   public func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UICollectionViewCell {
-    let identifier = String(describing: type(of: model).cellAnyType)
+    let identifier = String(describing: type(of: model).anyViewType)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     model.setupAny(view: cell)
     return cell
