@@ -56,7 +56,7 @@ class WelcomeViewController: UIViewController {
 }
 extension WelcomeViewController : WelcomePresenterOutput {
   func didChangeState(viewModel: Welcome.DataContext.ViewModel) {
-    
+    self.explanationLabel.text = viewModel.text
   }
   
   func didEnterPendingState(visible: Bool, blocking: Bool) {

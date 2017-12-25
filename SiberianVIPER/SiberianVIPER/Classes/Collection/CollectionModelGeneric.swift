@@ -15,43 +15,19 @@ protocol SelfSizingModel {
 
 public protocol CollectionModel {
   static var cellAnyType: UIView.Type { get }
-  func setupAny(cell: UIView)
+  func setupAny(view: UIView)
 }
-/// Use this protocol to represent UICollectionViewCell or UITableViewCell data context
-///
-///       struct NoteViewModel {
-///         let reuseId = NoteCell.reuseIdentifier
-///
-///         let id: String
-///         var text: String
-///
-///         var participants: [UserViewModel]
-///       }
-///
-///       extension NoteViewModel: CollectionModelGeneric {
-///         func setup(cell: NoteCell) {
-///           cell.textLabel?.text = self.text
-///         }
-///       }
-///
-///       // Then somewhere in your datasource/display manager
-///
-///       let viewModel = self.items[indexPath.row]
-///       let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.reuseId) as! NoteCell
-///       viewModel.setupAny(cell: cell)
-///
-/// So you control and configure your cells through their view models
-/// This is encouraged by one of CocoaHeads meetups
+
 public protocol CollectionModelGeneric: CollectionModel {
-  associatedtype CellType: UIView
-  func setup(cell: CellType)
+  associatedtype ViewType: UIView
+  func setup(view: ViewType)
 }
 
 public extension CollectionModelGeneric {
-  var cellAnyType: UIView.Type {
-    return CellType.self
+  var viewAnyType: UIView.Type {
+    return ViewType.self
   }
-  func setupAny(cell: UIView) {
-    setup(cell: cell as! CellType)
+  func setupAny(view: UIView) {
+    setup(view: view as! ViewType)
   }
 }

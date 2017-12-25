@@ -11,10 +11,10 @@ import UIKit
 
 public extension UITableView {
   func dequeueReusableCell<T: CollectionModelGeneric>(withModel model: T, for indexPath: IndexPath) -> UITableViewCell {
-    let identifier = String(describing: T.CellType.self)
+    let identifier = String(describing: T.ViewType.self)
     let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-    if let cell = cell as? T.CellType {
-      model.setup(cell: cell)
+    if let cell = cell as? T.ViewType {
+      model.setup(view: cell)
     }
     return cell
   }
@@ -22,7 +22,7 @@ public extension UITableView {
   func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UITableViewCell {
     let identifier = String(describing: type(of: model).cellAnyType)
     let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-    model.setupAny(cell: cell)
+    model.setupAny(view: cell)
     return cell
   }
   
@@ -31,10 +31,10 @@ public extension UITableView {
 public extension UICollectionView {
   
   func dequeueReusableCell<T: CollectionModelGeneric>(withModel model: T, for indexPath: IndexPath) -> UICollectionViewCell {
-    let identifier = String(describing: T.CellType.self)
+    let identifier = String(describing: T.ViewType.self)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-    if let cell = cell as? T.CellType {
-      model.setup(cell: cell)
+    if let cell = cell as? T.ViewType {
+      model.setup(view: cell)
     }
     return cell
   }
@@ -42,7 +42,7 @@ public extension UICollectionView {
   public func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UICollectionViewCell {
     let identifier = String(describing: type(of: model).cellAnyType)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-    model.setupAny(cell: cell)
+    model.setupAny(view: cell)
     return cell
   }
 }

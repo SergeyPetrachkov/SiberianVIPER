@@ -16,6 +16,8 @@
 		3963E0A61FA824EB00FD701D /* Startable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A51FA824EB00FD701D /* Startable.swift */; };
 		3963E0A81FA8251600FD701D /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0A71FA8251600FD701D /* Presenter.swift */; };
 		3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0AA1FA825B600FD701D /* SiberianCollection.swift */; };
+		398C51F91FF0A2EF00FE2FF3 /* CloseableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C51F81FF0A2EF00FE2FF3 /* CloseableModule.swift */; };
+		398C51FD1FF0A33100FE2FF3 /* Awaitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C51FC1FF0A33100FE2FF3 /* Awaitable.swift */; };
 		39C6A9801FECC4BA005D40C5 /* BusyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6A97F1FECC4BA005D40C5 /* BusyViewModel.swift */; };
 		39C6A9821FECC4CB005D40C5 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6A9811FECC4CB005D40C5 /* CollectionViewModel.swift */; };
 		39CC0B1D1FE17A33008144D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC0B1C1FE17A33008144D3 /* AppDelegate.swift */; };
@@ -35,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		398C51F51FF08F1700FE2FF3 /* PBXContainerItemProxy */ = {
+		398C520E1FF0A63500FE2FF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3963E0841FA8206900FD701D /* Project object */;
 			proxyType = 1;
@@ -56,6 +58,8 @@
 		3963E0A51FA824EB00FD701D /* Startable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startable.swift; sourceTree = "<group>"; };
 		3963E0A71FA8251600FD701D /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		3963E0AA1FA825B600FD701D /* SiberianCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiberianCollection.swift; sourceTree = "<group>"; };
+		398C51F81FF0A2EF00FE2FF3 /* CloseableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseableModule.swift; sourceTree = "<group>"; };
+		398C51FC1FF0A33100FE2FF3 /* Awaitable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Awaitable.swift; sourceTree = "<group>"; };
 		39C6A97F1FECC4BA005D40C5 /* BusyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyViewModel.swift; sourceTree = "<group>"; };
 		39C6A9811FECC4CB005D40C5 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		39CC0B1A1FE17A33008144D3 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +104,7 @@
 				3963E08F1FA8206900FD701D /* SiberianVIPER */,
 				39CC0B1B1FE17A33008144D3 /* Example */,
 				3963E08E1FA8206900FD701D /* Products */,
+				398C51FF1FF0A57600FE2FF3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +130,7 @@
 		3963E0981FA8208100FD701D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				398C51FB1FF0A31D00FE2FF3 /* Awaitable */,
 				39C6A97E1FECC4A7005D40C5 /* ViewModel */,
 				39C6A97D1FECC482005D40C5 /* Presenter */,
 				3963E0A91FA8259600FD701D /* Collection */,
@@ -141,6 +147,7 @@
 				3963E09E1FA8244500FD701D /* UIView+Closeable.swift */,
 				3963E0A01FA8245200FD701D /* UIViewController+Closeable.swift */,
 				3963E0A21FA8248E00FD701D /* CloseableRouter.swift */,
+				398C51F81FF0A2EF00FE2FF3 /* CloseableModule.swift */,
 			);
 			path = Closeable;
 			sourceTree = "<group>";
@@ -163,6 +170,21 @@
 				39D6E0171FDEB7010031A670 /* UIKit+Siberia.swift */,
 			);
 			path = Collection;
+			sourceTree = "<group>";
+		};
+		398C51FB1FF0A31D00FE2FF3 /* Awaitable */ = {
+			isa = PBXGroup;
+			children = (
+				398C51FC1FF0A33100FE2FF3 /* Awaitable.swift */,
+			);
+			path = Awaitable;
+			sourceTree = "<group>";
+		};
+		398C51FF1FF0A57600FE2FF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		39C6A97D1FECC482005D40C5 /* Presenter */ = {
@@ -252,7 +274,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				398C51F61FF08F1700FE2FF3 /* PBXTargetDependency */,
+				398C520F1FF0A63500FE2FF3 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -326,6 +348,7 @@
 			files = (
 				3963E09F1FA8244500FD701D /* UIView+Closeable.swift in Sources */,
 				3963E0A31FA8248E00FD701D /* CloseableRouter.swift in Sources */,
+				398C51FD1FF0A33100FE2FF3 /* Awaitable.swift in Sources */,
 				39C6A9821FECC4CB005D40C5 /* CollectionViewModel.swift in Sources */,
 				3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */,
 				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
@@ -336,6 +359,7 @@
 				3963E0A61FA824EB00FD701D /* Startable.swift in Sources */,
 				39C6A9801FECC4BA005D40C5 /* BusyViewModel.swift in Sources */,
 				3963E09A1FA8217500FD701D /* CollectionModelGeneric.swift in Sources */,
+				398C51F91FF0A2EF00FE2FF3 /* CloseableModule.swift in Sources */,
 				3963E0A81FA8251600FD701D /* Presenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,10 +382,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		398C51F61FF08F1700FE2FF3 /* PBXTargetDependency */ = {
+		398C520F1FF0A63500FE2FF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3963E08C1FA8206900FD701D /* SiberianVIPER */;
-			targetProxy = 398C51F51FF08F1700FE2FF3 /* PBXContainerItemProxy */;
+			targetProxy = 398C520E1FF0A63500FE2FF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

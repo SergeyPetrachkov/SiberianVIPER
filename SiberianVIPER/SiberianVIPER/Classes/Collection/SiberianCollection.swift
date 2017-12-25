@@ -8,38 +8,6 @@
 
 import Foundation
 
-/// Protocol that is an abstraction over average datasource. Use it in ViewModels of table/collection modules
-///
-///
-///            class SiberianBaseCollectionSource: NSObject, SiberianCollectionSource {
-///              var items: [NoteViewModel] = []
-///
-///              var changeSet: [CollectionChange]?
-///
-///              func item(for indexPath: IndexPath) -> NoteViewModel {
-///                return self.items[indexPath.row]
-///              }
-///
-///              func numberOfItems(in section: Int) -> Int {
-///                return self.items.count
-///              }
-///            }
-///            struct NoteViewModel {
-///              let reuseId = "NoteCell.reuseIdentifier"
-///
-///              let id: String
-///              var text: String
-///            }
-///
-///            extension NoteViewModel: CellViewModel {
-///              func setup(cell: NoteCell) {
-///                cell.textLabel?.text = self.text
-///              }
-///            }
-///
-///            class NoteCell: UITableViewCell {
-///
-///            }
 public protocol SiberianCollectionSource: AnySiberianCollectionSource {
   associatedtype ItemType = CollectionModel
   var items: [ItemType] { get }
@@ -106,7 +74,7 @@ open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableVi
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let model = self.provider.anyItem(for: indexPath) {
       let cell = tableView.dequeueReusableCell(withModel: model, for: indexPath)
-      model.setupAny(cell: cell)
+      model.setupAny(view: cell)
       return cell
     } else {
       fatalError("An error occured while trying to access SiberianTableSource item at indexPath:\(indexPath)")
