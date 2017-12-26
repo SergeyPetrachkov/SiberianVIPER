@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIView: Closeable {
   public func close(animated: Bool, completion: (() -> Void)?) {

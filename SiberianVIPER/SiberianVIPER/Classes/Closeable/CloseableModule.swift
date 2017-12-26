@@ -1,13 +1,13 @@
 //
-//  Presenter+Startable.swift
+//  CloseableModule.swift
 //  SiberianVIPER
 //
-//  Created by Sergey Petrachkov on 31/10/2017.
+//  Created by Sergey Petrachkov on 25/12/2017.
 //  Copyright © 2017 Sergey Petrachkov. All rights reserved.
 //
 
 import Foundation
 
-public protocol Presenter: Startable {
+public protocol CloseableModule {
   func requestClose()
 }

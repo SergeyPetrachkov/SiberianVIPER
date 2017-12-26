@@ -8,47 +8,8 @@
 
 import Foundation
 
-/// Represents atomic change in a collection
-public enum CollectionChange {
-  case new(IndexPath?)
-  case edit(IndexPath)
-  case delete(IndexPath)
-}
-
-/// Protocol that is an abstraction over average datasource. Use it in ViewModels of table/collection modules
-///
-///
-///            class SiberianBaseCollectionSource: NSObject, SiberianCollectionSource {
-///              var items: [NoteViewModel] = []
-///
-///              var changeSet: [CollectionChange]?
-///
-///              func item(for indexPath: IndexPath) -> NoteViewModel {
-///                return self.items[indexPath.row]
-///              }
-///
-///              func numberOfItems(in section: Int) -> Int {
-///                return self.items.count
-///              }
-///            }
-///            struct NoteViewModel {
-///              let reuseId = "NoteCell.reuseIdentifier"
-///
-///              let id: String
-///              var text: String
-///            }
-///
-///            extension NoteViewModel: CellViewModel {
-///              func setup(cell: NoteCell) {
-///                cell.textLabel?.text = self.text
-///              }
-///            }
-///
-///            class NoteCell: UITableViewCell {
-///
-///            }
 public protocol SiberianCollectionSource: AnySiberianCollectionSource {
-  associatedtype ItemType = CellViewAnyModel
+  associatedtype ItemType = CollectionModel
   var items: [ItemType] { get }
   
   var changeSet: [CollectionChange] { get }
@@ -59,12 +20,12 @@ public protocol SiberianCollectionSource: AnySiberianCollectionSource {
   
 }
 public extension SiberianCollectionSource {
-  var AnyType: CellViewAnyModel.Type {
-    return (ItemType.self as! CellViewAnyModel.Type).self
+  var AnyType: CollectionModel.Type {
+    return (ItemType.self as! CollectionModel.Type).self
   }
   
-  func anyItem(for indexPath: IndexPath) -> CellViewAnyModel? {
-    return self.item(for: indexPath) as? CellViewAnyModel
+  func anyItem(for indexPath: IndexPath) -> CollectionModel? {
+    return self.item(for: indexPath) as? CollectionModel
   }
   
   func numberOfAnyItems(in section: Int) -> Int {
@@ -73,28 +34,33 @@ public extension SiberianCollectionSource {
 }
 
 public protocol AnySiberianCollectionSource {
-  var AnyType: CellViewAnyModel.Type { get }
+  var AnyType: CollectionModel.Type { get }
   // MARK: - Sections
   func numberOfSections() -> Int
   
-  func modelForSection(at index: Int) -> CellViewAnyModel?
-  func heightForSection(at index: Int) -> CGFloat
+  func modelForSectionHeader(at index: Int) -> CollectionModel?
+  func heightForSectionHeader(at index: Int) -> CGFloat
+  
+  func modelForSectionFooter(at index: Int) -> CollectionModel?
+  func heightForSectionFooter(at index: Int) -> CGFloat
   // MARK: - Items
-  func anyItem(for indexPath: IndexPath) -> CellViewAnyModel?
+  func anyItem(for indexPath: IndexPath) -> CollectionModel?
   func numberOfAnyItems(in section: Int) -> Int
 }
 
 
-open class SiberianTableSource: NSObject, UITableViewDataSource {
-  public fileprivate(set) var provider: AnySiberianCollectionSource!
+open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableViewDelegate {
+  open fileprivate(set) var provider: AnySiberianCollectionSource!
+  open fileprivate(set) var delegate: SiberianCollectionDelegate?
   
   fileprivate override init() {
     super.init()
   }
   
-  public convenience init(provider: AnySiberianCollectionSource) {
-    self.init()
+  public init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?) {
+    super.init()
     self.provider = provider
+    self.delegate = delegate
   }
   
   open func numberOfSections(in tableView: UITableView) -> Int {
@@ -108,14 +74,20 @@ open class SiberianTableSource: NSObject, UITableViewDataSource {
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let model = self.provider.anyItem(for: indexPath) {
       let cell = tableView.dequeueReusableCell(withModel: model, for: indexPath)
-      model.setupAny(cell: cell)
+      model.setupAny(view: cell)
       return cell
     } else {
       fatalError("An error occured while trying to access SiberianTableSource item at indexPath:\(indexPath)")
     }
   }
-}
-
-public protocol SiberianCollectionDelegate: class {
-  func didSelect(item: CellViewAnyModel, at indexPath: IndexPath)
+  
+  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let model = self.provider.anyItem(for: indexPath) {
+      self.delegate?.didSelect(item: model,
+                               at: indexPath)
+    }
+    
+    tableView.deselectRow(at: indexPath,
+                          animated: true)
+  }
 }

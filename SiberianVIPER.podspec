@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name             = 'SiberianVIPER'
-  s.version          = '1.0.6'
-  s.summary          = 'SiberianVIPER is a bunch of protocols that help in VIPER. See also VIPERTemplates'
-  s.description      = 'SiberianVIPER is a bunch of protocols that help in VIPER. See also https://github.com/SergeyPetrachkov/VIPERTemplates'
+  s.version          = '2.0.0'
+  s.summary          = 'SiberianVIPER is a bunch of protocols and classes that help in VIPER. See the example app and VIPERTemplates'
+  s.description      = 'SiberianVIPER is a set of protocols and classes that help in VIPER. See the example app for reference. Take a look at https://github.com/SergeyPetrachkov/VIPERTemplates'
 
   s.homepage         = 'https://github.com/SergeyPetrachkov/SiberianVIPER'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
