@@ -21,7 +21,7 @@ open class SiberianPresenter: Awaitable, Startable, CloseableModule {
     
   }
   // MARK: - Closeable module
-  public func requestClose() {
+  open func requestClose() {
   }
   // MARK: - Awaitable
   open var awaitableModel: BusyViewModel?
