@@ -22,7 +22,7 @@ enum Welcome {
     struct Response {
       let text: String
     }
-    struct ViewModel: BusyViewModel {
+    class ViewModel: BusyViewModel {
       var isBusy: Bool = false
       var text: String = ""
     }

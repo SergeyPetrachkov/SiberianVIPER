@@ -17,7 +17,7 @@ protocol WelcomePresenterInput: Awaitable, Startable, CloseableModule {
   var output: WelcomePresenterOutput? { get set }
   var router : WelcomeRoutingLogic? { get set }
   var interactor : WelcomeInteractorInput? { get set }
-  func presentSomething()
+  func presentSomething() throws
   func showList()
 }
 protocol WelcomePresenterOutput: AwaitableDelegate {
@@ -31,7 +31,7 @@ class WelcomePresenter: SiberianPresenter, WelcomePresenterInput {
   var router : WelcomeRoutingLogic?
   var interactor : WelcomeInteractorInput?
   var viewModel: Welcome.DataContext.ViewModel! {
-    didSet{
+    didSet {
       self.awaitableModel = self.viewModel
     }
   }
@@ -44,12 +44,16 @@ class WelcomePresenter: SiberianPresenter, WelcomePresenterInput {
     print("WelcomePresenter deinit is called")
   }
   // MARK: - Presenter Input
-  func presentSomething() {
-    if self.viewModel.isBusy {
-      return
+  func presentSomething() throws {
+    do {
+      guard !self.viewModel.isBusy else {
+        throw ModuleError.busy
+      }
+      self.enterPendingState(visible: true, blocking: true)
+      self.interactor?.doSomething(request: Welcome.DataContext.Request())
+    } catch let error {
+      print(error)
     }
-    self.enterPendingState(visible: true, blocking: true)
-    self.interactor?.doSomething(request: Welcome.DataContext.Request())
   }
   func showList() {
     self.router?.openList(from: self.view, routingParams: Welcome.DataContext.ModuleOut())

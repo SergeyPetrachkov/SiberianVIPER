@@ -48,7 +48,7 @@ class WelcomeViewController: UIViewController {
   // MARK: - Actions
   @objc fileprivate func didTapRefresh() {
     self.explanationLabel.text = "didTapRefresh"
-    self.presenter?.presentSomething()
+    try? self.presenter?.presentSomething()
   }
   @objc fileprivate func didTapNext() {
     self.presenter?.showList()
