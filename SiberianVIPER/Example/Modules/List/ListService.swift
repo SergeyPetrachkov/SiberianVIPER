@@ -26,6 +26,7 @@ class ListService: ListServiceProtocol {
   }
   
   fileprivate(set) var errorReporter: ErrorReporter?
+  
   func getItems(request: List.DataContext.Request,
                 success: @escaping ([Item]) -> Void,
                 failure: @escaping (Error) -> Void) {

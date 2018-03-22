@@ -10,7 +10,7 @@
 //
 
 import UIKit
-
+import SiberianVIPER
 protocol ListInteractorInput: class {
   var output : ListInteractorOutput? { get set }
   func requestItems(request: List.DataContext.Request)
@@ -22,8 +22,30 @@ protocol ListInteractorOutput: class {
   func didFail(with error: Error)
 }
 
+protocol ListModuleMapperProtocol: CollectionModuleMapper {
+  func map(item: EntityType) -> ViewModelType
+  func map(digit: Int) -> Double
+}
+class ListModuleMapper: ListModuleMapperProtocol {
+  func map(item: Item) -> ListItemModel {
+    return ListItemModel(currentModel: item)
+  }
+  
+  func map(digit: Int) -> Double {
+    return Double(digit)
+  }
+  
+  func map(items: [Item]) -> [ListItemModel] {
+    return items.map( {ListItemModel(currentModel: $0)} )
+  }
+  typealias EntityType = Item
+  
+  typealias ViewModelType = ListItemModel
+  
+}
 class ListInteractor: ListInteractorInput {
   let service: ListServiceProtocol!
+  let mapper: ListModuleMapper = ListModuleMapper()
   weak var output: ListInteractorOutput?
   required init(service: ListServiceProtocol) {
     self.service = service
@@ -32,7 +54,7 @@ class ListInteractor: ListInteractorInput {
   func requestItems(request: List.DataContext.Request) {
     self.service.getItems(request: request,
                           success: { items in
-                            let models = items.map({ ListItemModel(currentModel: $0) })
+                            let models = self.mapper.map(items: items)
                             self.output?.didReceive(response: List.DataContext.Response(originalRequest: request,
                                                                                         items: models))
     },
