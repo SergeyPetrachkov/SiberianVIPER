@@ -77,7 +77,7 @@ class ListPresenter: CollectionPresenter, ListPresenterInput {
 extension ListPresenter : ListInteractorOutput {
   // MARK: - Interactor output
   func didReceive(response: List.DataContext.Response) {
-    if response.originalRequest.skip == 0 {
+    if response.originalRequest.paginationParams.skip == 0 {
       self.viewModel.items = []
     }
     response.items.enumerated().forEach({ (offset, _) in

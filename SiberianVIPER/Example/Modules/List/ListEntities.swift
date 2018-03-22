@@ -15,12 +15,15 @@ import SiberianVIPER
 enum List {
   // MARK: - Use cases
   enum DataContext {
-    struct Request {
-      let skip: Int
-      let take: Int
+    struct Request: PaginationRequest {
+      var paginationParams: PaginationParameters
+      init(skip: Int, take: Int) {
+        self.paginationParams = PaginationParameters(skip: skip, take: take)
+      }
     }
-    struct Response {
-      let originalRequest: Request
+    struct Response: ModuleResponse  {
+      var originalRequest: Request
+      
       let items: [ListItemModel]
     }
     class ViewModel: CollectionViewModel {
