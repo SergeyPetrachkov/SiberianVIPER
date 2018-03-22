@@ -38,6 +38,10 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     }
     return (skip: skip, take: self.collectionModel.batchSize)
   }
+  override open func exitPendingState() {
+    super.exitPendingState()
+    self.collectionModel.changeSet = []
+  }
   open func modelForSectionHeader(at index: Int) -> CollectionModel? {
     return nil
   }

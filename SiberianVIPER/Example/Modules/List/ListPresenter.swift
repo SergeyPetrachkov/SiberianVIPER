@@ -44,7 +44,6 @@ class ListPresenter: CollectionPresenter, ListPresenterInput {
     print("ListPresenter deinit is called")
   }
   // MARK: - Presenter Input
-  
   func refresh() {
     _ = try? self.fetchItems(reset: true)
   }
@@ -69,11 +68,6 @@ class ListPresenter: CollectionPresenter, ListPresenterInput {
       print(error)
       throw error
     }
-  }
-  
-  override func exitPendingState() {
-    super.exitPendingState()
-    self.viewModel.changeSet = []
   }
 }
 extension ListPresenter : ListInteractorOutput {

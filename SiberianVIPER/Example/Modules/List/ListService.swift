@@ -12,7 +12,6 @@
 import UIKit
 import SiberianVIPER
 protocol ListServiceProtocol: class {
-  var errorReporter: ErrorReporter? { get }
   func getItems(request: List.DataContext.Request,
                    success: @escaping ([Item]) -> Void,
                    failure: @escaping (Error) -> Void)
@@ -25,7 +24,7 @@ class ListService: ListServiceProtocol {
     self.errorReporter = reporter
   }
   
-  fileprivate(set) var errorReporter: ErrorReporter?
+  let errorReporter: ErrorReporter?
   
   func getItems(request: List.DataContext.Request,
                 success: @escaping ([Item]) -> Void,

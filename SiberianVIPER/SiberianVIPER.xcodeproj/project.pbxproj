@@ -149,6 +149,13 @@
 			path = ModuleMapper;
 			sourceTree = "<group>";
 		};
+		39115ADB20639596008BE0C9 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 		3936C9C31FF0E00400F3A3E7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +319,7 @@
 		39CC0B2C1FE17A41008144D3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				39115ADB20639596008BE0C9 /* Collection */,
 				398C52101FF0A78900FE2FF3 /* Welcome */,
 				398C52111FF0A81800FE2FF3 /* List */,
 			);
