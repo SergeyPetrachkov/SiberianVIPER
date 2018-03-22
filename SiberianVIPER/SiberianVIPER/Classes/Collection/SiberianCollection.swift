@@ -52,15 +52,17 @@ public protocol AnySiberianCollectionSource {
 open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableViewDelegate {
   open fileprivate(set) var provider: AnySiberianCollectionSource!
   open fileprivate(set) var delegate: SiberianCollectionDelegate?
+  open fileprivate(set) var fetchDelegate: CollectionPresenterInput?
   
   fileprivate override init() {
     super.init()
   }
   
-  public init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?) {
+  public init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?, fetchDelegate: CollectionPresenterInput?) {
     super.init()
     self.provider = provider
     self.delegate = delegate
+    self.fetchDelegate = fetchDelegate
   }
   
   open func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,5 +91,14 @@ open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableVi
     
     tableView.deselectRow(at: indexPath,
                           animated: true)
+  }
+  
+  open func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                 withVelocity velocity: CGPoint,
+                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let bottomEdge = targetContentOffset.pointee.y + scrollView.frame.size.height
+    if bottomEdge >= scrollView.contentSize.height {
+      _ = try? self.fetchDelegate?.fetchItems(reset: false)
+    }
   }
 }

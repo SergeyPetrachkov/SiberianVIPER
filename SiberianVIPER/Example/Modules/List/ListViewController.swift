@@ -11,36 +11,21 @@
 
 import UIKit
 import SiberianVIPER
-class ListDisplayManager: SiberianCollectionManager {
-  var fetchManager: ListPresenterInput?
-  public convenience init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?, fetchManager: ListPresenterInput?) {
-    self.init(provider: provider, delegate: delegate)  
-    self.fetchManager = fetchManager
-  }
-  
-  
-  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-    let bottomEdge = targetContentOffset.pointee.y + scrollView.frame.size.height
-    if bottomEdge >= scrollView.contentSize.height {
-      self.fetchManager?.fetch()
-    }
-  }
-}
+
 class ListViewController: UITableViewController {
   // MARK: - UI properties
  
   // MARK: - Essentials
   var presenter : ListPresenterInput?
-  lazy var displayManager: ListDisplayManager? = { [weak self] in
+  lazy var displayManager: SiberianCollectionManager? = { [weak self] in
     guard let strongSelf = self,
       let provider = strongSelf.presenter as? AnySiberianCollectionSource else {
         return nil
     }
-    let manager = ListDisplayManager(provider: provider,
-                                     delegate: strongSelf.presenter as? SiberianCollectionDelegate,
-                                     fetchManager: strongSelf.presenter)
-    
-    
+    let manager = SiberianCollectionManager(provider: provider,
+                                            delegate: strongSelf.presenter as? SiberianCollectionDelegate,
+                                            fetchDelegate: strongSelf.presenter as? CollectionPresenterInput)
+
     return manager
   }()
 
