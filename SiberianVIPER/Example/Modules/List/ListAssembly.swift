@@ -38,9 +38,21 @@ class ListAssembly {
     return presenter
   }
   fileprivate static func injectInteractor() -> ListInteractorInput {
-    return ListInteractor()
+    let service = injectService()
+    return ListInteractor(service: service)
+  }
+  fileprivate static func injectService() -> ListServiceProtocol {
+    let reporter = DebugReporter()
+    return ListService(reporter: reporter)
   }
   fileprivate static func injectRouter() -> ListRoutingLogic {
     return ListRouter()
+  }
+}
+
+import SiberianVIPER
+class DebugReporter: ErrorReporter {
+  func track(error: Error) {
+    print(error)
   }
 }

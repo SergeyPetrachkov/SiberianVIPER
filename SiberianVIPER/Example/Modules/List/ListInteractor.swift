@@ -14,6 +14,7 @@ import UIKit
 protocol ListInteractorInput: class {
   var output : ListInteractorOutput? { get set }
   func requestItems(request: List.DataContext.Request)
+  init(service: ListServiceProtocol)
 }
 
 protocol ListInteractorOutput: class {
@@ -22,9 +23,11 @@ protocol ListInteractorOutput: class {
 }
 
 class ListInteractor: ListInteractorInput {
-  let service: ListServiceProtocol = ListService()
+  let service: ListServiceProtocol!
   weak var output: ListInteractorOutput?
-  
+  required init(service: ListServiceProtocol) {
+    self.service = service
+  }
   // MARK: Do something
   func requestItems(request: List.DataContext.Request) {
     self.service.getItems(request: request,
