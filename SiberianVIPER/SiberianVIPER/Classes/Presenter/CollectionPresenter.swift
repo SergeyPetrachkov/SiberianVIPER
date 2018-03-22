@@ -7,16 +7,21 @@
 //
 
 import Foundation
+public enum ModuleError: Error {
+  case busy
+  case internalError(details: String)
+  case undefined
+}
 public protocol CollectionPresenterInput {
-  @discardableResult func fetchItems(reset: Bool) -> (skip: Int, take: Int)
+  @discardableResult func fetchItems(reset: Bool) throws -> (skip: Int, take: Int)
 }
 
 open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, SiberianCollectionSource {
   
   public var collectionModel: CollectionViewModel!
-  @discardableResult open func fetchItems(reset: Bool) -> (skip: Int, take: Int) {
+  @discardableResult open func fetchItems(reset: Bool) throws -> (skip: Int, take: Int)  {
     if let busy = self.awaitableModel?.isBusy, busy {
-      return (skip: 0, take: 0)
+      throw ModuleError.busy
     }
     self.enterPendingState(visible: reset, blocking: reset)
     return self.performPrefetch(reset: reset)

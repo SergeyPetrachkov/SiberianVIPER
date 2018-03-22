@@ -21,7 +21,7 @@ class ListService: ListServiceProtocol {
   func getItems(request: List.DataContext.Request,
                 success: @escaping ([Item]) -> Void,
                 failure: @escaping (Error) -> Void) {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1,
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3,
                                   execute: {
                                     success([Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024))),
                                              Item(textContent: String.randomString(length: 16), number: Int(arc4random_uniform(1024))),

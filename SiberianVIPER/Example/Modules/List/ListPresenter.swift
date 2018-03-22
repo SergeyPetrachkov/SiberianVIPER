@@ -46,10 +46,10 @@ class ListPresenter: CollectionPresenter, ListPresenterInput {
   // MARK: - Presenter Input
   
   func refresh() {
-    self.fetchItems(reset: true)
+    _ = try? self.fetchItems(reset: true)
   }
   func fetch() {
-    self.fetchItems(reset: false)
+    _ = try? self.fetchItems(reset: false)
   }
   // MARK: - Startable
   override func start() {
@@ -57,16 +57,18 @@ class ListPresenter: CollectionPresenter, ListPresenterInput {
     self.awaitableDelegate = self.output
     self.awaitableModel = self.viewModel
     self.collectionModel = self.viewModel
-    self.fetchItems(reset: true)
+    _ = try? self.fetchItems(reset: true)
   }
   // MARK: - Base overrides
-  @discardableResult override func fetchItems(reset: Bool) -> (skip: Int, take: Int) {
-    if self.viewModel.isBusy {
-      return (0,0)
+  @discardableResult override func fetchItems(reset: Bool) throws -> (skip: Int, take: Int) {
+    do {
+      let skipTake = try super.fetchItems(reset: reset)
+      self.interactor?.requestItems(request: List.DataContext.Request(skip: skipTake.skip, take: skipTake.take))
+      return skipTake
+    } catch let error {
+      print(error)
+      throw error
     }
-    let skipTake = super.fetchItems(reset: reset)
-    self.interactor?.requestItems(request: List.DataContext.Request(skip: skipTake.skip, take: skipTake.take))
-    return skipTake
   }
   
   override func exitPendingState() {
