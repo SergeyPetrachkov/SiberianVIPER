@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		39115AD22063461B008BE0C9 /* ModuleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39115AD12063461B008BE0C9 /* ModuleRequest.swift */; };
 		39115AD4206348C9008BE0C9 /* ModuleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39115AD3206348C9008BE0C9 /* ModuleResponse.swift */; };
+		39115AD720635C55008BE0C9 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39115AD620635C55008BE0C9 /* ErrorReporter.swift */; };
 		3936C9C51FF0E01400F3A3E7 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3936C9C41FF0E01400F3A3E7 /* ListCell.swift */; };
 		3963E0921FA8206900FD701D /* SiberianVIPER.h in Headers */ = {isa = PBXBuildFile; fileRef = 3963E0901FA8206900FD701D /* SiberianVIPER.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3963E09A1FA8217500FD701D /* CollectionModelGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963E0991FA8217500FD701D /* CollectionModelGeneric.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		39115AD12063461B008BE0C9 /* ModuleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleRequest.swift; sourceTree = "<group>"; };
 		39115AD3206348C9008BE0C9 /* ModuleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleResponse.swift; sourceTree = "<group>"; };
+		39115AD620635C55008BE0C9 /* ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
 		3936C9C41FF0E01400F3A3E7 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		3963E08D1FA8206900FD701D /* SiberianVIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SiberianVIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3963E0901FA8206900FD701D /* SiberianVIPER.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiberianVIPER.h; sourceTree = "<group>"; };
@@ -129,6 +131,14 @@
 			path = ModuleEntities;
 			sourceTree = "<group>";
 		};
+		39115AD520635C41008BE0C9 /* ErrorReporting */ = {
+			isa = PBXGroup;
+			children = (
+				39115AD620635C55008BE0C9 /* ErrorReporter.swift */,
+			);
+			path = ErrorReporting;
+			sourceTree = "<group>";
+		};
 		3936C9C31FF0E00400F3A3E7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +179,7 @@
 		3963E0981FA8208100FD701D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				39115AD520635C41008BE0C9 /* ErrorReporting */,
 				39115AD0206345E2008BE0C9 /* ModuleEntities */,
 				398C51FB1FF0A31D00FE2FF3 /* Awaitable */,
 				39C6A97E1FECC4A7005D40C5 /* ViewModel */,
@@ -417,6 +428,7 @@
 				398C51FD1FF0A33100FE2FF3 /* Awaitable.swift in Sources */,
 				39C6A9821FECC4CB005D40C5 /* CollectionViewModel.swift in Sources */,
 				3963E09C1FA8240A00FD701D /* Closeable.swift in Sources */,
+				39115AD720635C55008BE0C9 /* ErrorReporter.swift in Sources */,
 				3963E0A11FA8245200FD701D /* UIViewController+Closeable.swift in Sources */,
 				3963E0AB1FA825B600FD701D /* SiberianCollection.swift in Sources */,
 				39D6E0161FDEB6C30031A670 /* CollectionChange.swift in Sources */,
