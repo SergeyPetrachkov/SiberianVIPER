@@ -11,7 +11,8 @@ public protocol CollectionPresenterInput {
   @discardableResult func fetchItems(reset: Bool) -> (skip: Int, take: Int)
 }
 
-open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput {
+open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, SiberianCollectionSource {
+  
   public var collectionModel: CollectionViewModel!
   @discardableResult open func fetchItems(reset: Bool) -> (skip: Int, take: Int) {
     if let busy = self.awaitableModel?.isBusy, busy {
@@ -31,5 +32,47 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput {
       })
     }
     return (skip: skip, take: self.collectionModel.batchSize)
+  }
+  open func modelForSectionHeader(at index: Int) -> CollectionModel? {
+    return nil
+  }
+  
+  open func heightForSectionHeader(at index: Int) -> CGFloat {
+    return 0
+  }
+  
+  open func modelForSectionFooter(at index: Int) -> CollectionModel? {
+    return nil
+  }
+  
+  open func heightForSectionFooter(at index: Int) -> CGFloat {
+    return 0
+  }
+  
+  open func modelForSection(at index: Int) -> CollectionModel? {
+    return nil
+  }
+  
+  open func numberOfSections() -> Int {
+    return 1
+  }
+  
+  open var items: [CollectionModel] {
+    return self.collectionModel.items
+  }
+  
+  open var changeSet: [CollectionChange] {
+    return self.collectionModel.changeSet
+  }
+  
+  open func item(for indexPath: IndexPath) -> CollectionModel? {
+    if indexPath.row >= self.items.count {
+      return nil
+    }
+    return self.items[indexPath.row]
+  }
+  
+  open func numberOfItems(in section: Int) -> Int {
+    return self.items.count
   }
 }

@@ -81,7 +81,7 @@ extension ListPresenter : ListInteractorOutput {
       self.viewModel.items = []
     }
     response.items.enumerated().forEach({ (offset, _) in
-      self.viewModel.changeSet.append(.new(IndexPath(row: self.viewModel.items.count + offset, section: 0)))
+      self.viewModel.changeSet.append(.new(IndexPath(row: self.items.count + offset, section: 0)))
     })
     
     self.viewModel.items.append(contentsOf: response.items as [CollectionModel])
@@ -89,49 +89,5 @@ extension ListPresenter : ListInteractorOutput {
   }
   func didFail(with error: Error) {
     self.exitPendingState()
-  }
-}
-extension ListPresenter: SiberianCollectionSource {
-  func modelForSectionHeader(at index: Int) -> CollectionModel? {
-    return nil
-  }
-  
-  func heightForSectionHeader(at index: Int) -> CGFloat {
-    return 0
-  }
-  
-  func modelForSectionFooter(at index: Int) -> CollectionModel? {
-    return nil
-  }
-  
-  func heightForSectionFooter(at index: Int) -> CGFloat {
-    return 0
-  }
-  
-  func modelForSection(at index: Int) -> CollectionModel? {
-    return nil
-  }
-  
-  func numberOfSections() -> Int {
-    return 1
-  }
-  
-  var items: [CollectionModel] {
-    return self.viewModel.items
-  }
-  
-  var changeSet: [CollectionChange] {
-    return self.viewModel.changeSet
-  }
-  
-  func item(for indexPath: IndexPath) -> CollectionModel? {
-    if indexPath.row >= self.items.count {
-      return nil
-    }
-    return self.items[indexPath.row]
-  }
-  
-  func numberOfItems(in section: Int) -> Int {
-    return self.items.count
   }
 }
