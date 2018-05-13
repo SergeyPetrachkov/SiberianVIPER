@@ -2,6 +2,7 @@
 [![Version](https://img.shields.io/cocoapods/v/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
 [![License](https://img.shields.io/cocoapods/l/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
 [![Platform](https://img.shields.io/cocoapods/p/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SergeyPetrachkov/SiberianVIPER)
 
 Swift protocols for VIPER from Siberia with love!
 
@@ -9,7 +10,7 @@ Try also [VIPERTemplates](https://github.com/SergeyPetrachkov/VIPERTemplates) an
 
 ## Requirements
 
-Swift 4.0, iOS version >= 9.0
+Swift >4.0, iOS version >= 9.0
 
 ## Installation
 
@@ -20,7 +21,7 @@ it, simply add the following line to your Podfile:
 pod "SiberianVIPER"
 ```
 
-2.0.2 and 3.0.0 versions are not fully compatible. You'll need to specify pod version.
+2.0.2 and 3.0.* versions are not fully compatible. You'll need to specify pod version.
 
 ## Example
 
