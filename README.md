@@ -23,7 +23,7 @@ pod "SiberianVIPER"
 
 2.0.2 and 3.0.* versions are not fully compatible. You'll need to specify pod version.
 
-To install SibrianVIPER you can also use Carthage. Just add the following to your Cartfile:
+To install SiberianVIPER you can also use Carthage. Just add the following to your Cartfile:
 
 ```ruby
 github "SergeyPetrachkov/SiberianVIPER"
