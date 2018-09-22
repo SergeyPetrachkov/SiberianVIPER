@@ -17,7 +17,6 @@ public protocol SiberianCollectionSource: AnySiberianCollectionSource {
   func item(for indexPath: IndexPath) -> ItemType?
   func numberOfItems(in section: Int) -> Int
   func numberOfSections() -> Int
-  
 }
 public extension SiberianCollectionSource {
   var AnyType: CollectionModel.Type {
@@ -49,7 +48,7 @@ public protocol AnySiberianCollectionSource {
 }
 
 
-open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableViewDelegate {
+open class SiberianTableViewManager: NSObject, UITableViewDataSource, UITableViewDelegate {
   open fileprivate(set) var provider: AnySiberianCollectionSource!
   open fileprivate(set) var delegate: SiberianCollectionDelegate?
   open fileprivate(set) var fetchDelegate: CollectionPresenterInput?
@@ -99,6 +98,38 @@ open class SiberianCollectionManager: NSObject, UITableViewDataSource, UITableVi
     let bottomEdge = targetContentOffset.pointee.y + scrollView.frame.size.height
     if bottomEdge >= scrollView.contentSize.height {
       _ = try? self.fetchDelegate?.fetchItems(reset: false)
+    }
+  }
+}
+
+open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource {
+  fileprivate(set) var provider: AnySiberianCollectionSource!
+  weak var delegate: SiberianCollectionDelegate?
+  
+  fileprivate override init() {
+    super.init()
+  }
+  
+  public init(provider: AnySiberianCollectionSource) {
+    super.init()
+    self.provider = provider
+  }
+  
+  public func collectionView(_ collectionView: UICollectionView,
+                             numberOfItemsInSection section: Int) -> Int {
+    return self.provider.numberOfAnyItems(in: section)
+  }
+  
+  public func collectionView(_ collectionView: UICollectionView,
+                             cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    if let model = self.provider.anyItem(for: indexPath) {
+      let cell = collectionView.dequeueReusableCell(withModel: model, for: indexPath)
+      
+      cell.contentView.isUserInteractionEnabled = false
+      model.setupAny(view: cell)
+      return cell
+    } else {
+      fatalError("An error occured while trying to access SiberianTableSource item at indexPath:\(indexPath)")
     }
   }
 }

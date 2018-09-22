@@ -17,14 +17,14 @@ class ListViewController: UITableViewController {
  
   // MARK: - Essentials
   var presenter : ListPresenterInput?
-  lazy var displayManager: SiberianCollectionManager? = { [weak self] in
+  lazy var displayManager: SiberianTableViewManager? = { [weak self] in
     guard let strongSelf = self,
       let provider = strongSelf.presenter as? AnySiberianCollectionSource else {
         return nil
     }
-    let manager = SiberianCollectionManager(provider: provider,
-                                            delegate: strongSelf.presenter as? SiberianCollectionDelegate,
-                                            fetchDelegate: strongSelf.presenter as? CollectionPresenterInput)
+    let manager = SiberianTableViewManager(provider: provider,
+                                           delegate: strongSelf.presenter as? SiberianCollectionDelegate,
+                                           fetchDelegate: strongSelf.presenter as? CollectionPresenterInput)
 
     return manager
   }()
