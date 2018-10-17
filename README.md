@@ -1,4 +1,7 @@
 # SiberianVIPER
+
+![](https://i.imgur.com/6FBClKx.png)
+
 [![Version](https://img.shields.io/cocoapods/v/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
 [![License](https://img.shields.io/cocoapods/l/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
 [![Platform](https://img.shields.io/cocoapods/p/SiberianVIPER.svg?style=flat)](http://cocoapods.org/pods/SiberianVIPER)
