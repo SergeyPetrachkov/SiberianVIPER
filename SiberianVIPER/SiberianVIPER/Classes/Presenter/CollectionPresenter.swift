@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public protocol CollectionPresenterInput {
+public protocol CollectionPresenterInput: class {
   @discardableResult func fetchItems(reset: Bool) -> (skip: Int, take: Int)
 }
 
