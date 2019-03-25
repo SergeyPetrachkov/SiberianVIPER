@@ -18,6 +18,7 @@ public protocol SiberianCollectionSource: AnySiberianCollectionSource {
   func numberOfItems(in section: Int) -> Int
   func numberOfSections() -> Int
 }
+
 public extension SiberianCollectionSource {
   var AnyType: CollectionModel.Type {
     return (ItemType.self as! CollectionModel.Type).self

@@ -25,7 +25,6 @@ public extension UITableView {
     model.setupAny(view: cell)
     return cell
   }
-  
 }
 
 public extension UICollectionView {
@@ -39,7 +38,7 @@ public extension UICollectionView {
     return cell
   }
   
-  public func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UICollectionViewCell {
+  func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UICollectionViewCell {
     let identifier = String(describing: type(of: model).anyViewType)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     model.setupAny(view: cell)
