@@ -113,8 +113,8 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, 
   
   fileprivate(set) var provider: AnySiberianCollectionSource!
   
-  weak var delegate: SiberianCollectionDelegate?
-  weak var fetchDelegate: CollectionPresenterInput?
+  open weak var delegate: SiberianCollectionDelegate?
+  open weak var fetchDelegate: CollectionPresenterInput?
   
   fileprivate override init() {
     super.init()
