@@ -120,7 +120,8 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, 
     super.init()
   }
   
-  public init(provider: AnySiberianCollectionSource, scrollDirection: UICollectionView.ScrollDirection) {
+  public init(provider: AnySiberianCollectionSource,
+              scrollDirection: UICollectionView.ScrollDirection = .vertical) {
     super.init()
     self.provider = provider
     self.scrollDirection = scrollDirection
@@ -142,7 +143,7 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, 
     }
   }
   
-  public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.bounds.width, height: self.defaultCellHeight)
   }
   
