@@ -103,17 +103,27 @@ open class SiberianTableViewManager: NSObject, UITableViewDataSource, UITableVie
   }
 }
 
-open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource {
+open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+  
+  open var defaultCellHeight: CGFloat {
+    return 44
+  }
+  
+  private var scrollDirection: UICollectionView.ScrollDirection = UICollectionView.ScrollDirection.vertical
+  
   fileprivate(set) var provider: AnySiberianCollectionSource!
+  
   weak var delegate: SiberianCollectionDelegate?
+  weak var fetchDelegate: CollectionPresenterInput?
   
   fileprivate override init() {
     super.init()
   }
   
-  public init(provider: AnySiberianCollectionSource) {
+  public init(provider: AnySiberianCollectionSource, scrollDirection: UICollectionView.ScrollDirection) {
     super.init()
     self.provider = provider
+    self.scrollDirection = scrollDirection
   }
   
   public func collectionView(_ collectionView: UICollectionView,
@@ -125,12 +135,28 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource {
                              cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if let model = self.provider.anyItem(for: indexPath) {
       let cell = collectionView.dequeueReusableCell(withModel: model, for: indexPath)
-      
-      cell.contentView.isUserInteractionEnabled = false
       model.setupAny(view: cell)
       return cell
     } else {
       fatalError("An error occured while trying to access SiberianTableSource item at indexPath:\(indexPath)")
+    }
+  }
+  
+  public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.bounds.width, height: self.defaultCellHeight)
+  }
+  
+  open func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                      withVelocity velocity: CGPoint,
+                                      targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let edge = self.scrollDirection == .horizontal
+      ? targetContentOffset.pointee.x + scrollView.frame.size.width
+      : targetContentOffset.pointee.y + scrollView.frame.size.height
+    let contentDimension = self.scrollDirection == .horizontal
+      ? scrollView.contentSize.width
+      : scrollView.contentSize.height
+    if edge >= contentDimension {
+      _ = try? self.fetchDelegate?.fetchItems(reset: false)
     }
   }
 }

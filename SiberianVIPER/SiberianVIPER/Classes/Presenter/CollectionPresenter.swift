@@ -7,18 +7,21 @@
 //
 
 import Foundation
+
 public enum ModuleError: Error {
   case busy
   case internalError(details: String)
   case undefined
 }
-public protocol CollectionPresenterInput {
+
+public protocol CollectionPresenterInput: AnyObject {
   @discardableResult func fetchItems(reset: Bool) throws -> (skip: Int, take: Int)
 }
 
 open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, SiberianCollectionSource {
   
   public var collectionModel: CollectionViewModel!
+  
   @discardableResult open func fetchItems(reset: Bool) throws -> (skip: Int, take: Int)  {
     if let busy = self.awaitableModel?.isBusy, busy {
       throw ModuleError.busy
@@ -26,6 +29,7 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     self.enterPendingState(visible: reset, blocking: reset)
     return self.performPrefetch(reset: reset)
   }
+  
   @discardableResult open func performPrefetch(reset: Bool) -> (skip: Int, take: Int) {
     var skip: Int = self.collectionModel.items.count
     if reset {
@@ -38,10 +42,12 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     }
     return (skip: skip, take: self.collectionModel.batchSize)
   }
+  
   override open func exitPendingState() {
     super.exitPendingState()
     self.collectionModel.changeSet = []
   }
+  
   open func modelForSectionHeader(at index: Int) -> CollectionModel? {
     return nil
   }
