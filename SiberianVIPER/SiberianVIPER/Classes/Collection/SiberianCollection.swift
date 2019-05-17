@@ -111,7 +111,7 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, 
   
   private var scrollDirection: UICollectionView.ScrollDirection = UICollectionView.ScrollDirection.vertical
   
-  fileprivate(set) var provider: AnySiberianCollectionSource!
+  open fileprivate(set) var provider: AnySiberianCollectionSource!
   
   open weak var delegate: SiberianCollectionDelegate?
   open weak var fetchDelegate: CollectionPresenterInput?
@@ -130,6 +130,14 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, 
   public func collectionView(_ collectionView: UICollectionView,
                              numberOfItemsInSection section: Int) -> Int {
     return self.provider.numberOfAnyItems(in: section)
+  }
+  
+  open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let item = self.provider.anyItem(for: indexPath) else {
+      return
+    }
+    self.delegate?.didSelect(item: item, at: indexPath)
+    collectionView.deselectItem(at: indexPath, animated: true)
   }
   
   public func collectionView(_ collectionView: UICollectionView,
