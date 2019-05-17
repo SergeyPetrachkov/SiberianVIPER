@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SiberianVIPER'
-  s.version          = '3.2.3'
+  s.version          = '3.2.4'
   s.summary          = 'SiberianVIPER is a bunch of protocols and classes that help in VIPER. See the example app and VIPERTemplates'
   s.description      = 'SiberianVIPER is a set of protocols and classes that help in VIPER. See the example app for reference. Take a look at https://github.com/SergeyPetrachkov/VIPERTemplates'
 
