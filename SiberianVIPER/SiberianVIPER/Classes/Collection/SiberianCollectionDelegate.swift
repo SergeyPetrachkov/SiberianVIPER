@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol SiberianCollectionDelegate: class {
+public protocol SiberianCollectionDelegate: AnyObject {
   func didSelect(item: CollectionModel, at indexPath: IndexPath)
 }

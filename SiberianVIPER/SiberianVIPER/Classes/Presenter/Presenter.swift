@@ -10,8 +10,7 @@ import Foundation
 
 open class SiberianPresenter: Awaitable, Startable, CloseableModule {
   // MARK: - Initializer
-  public init() {
-  }
+  public init() { }
   // MARK: - Startable
   open func start() {
     

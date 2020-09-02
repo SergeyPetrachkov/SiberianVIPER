@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol SiberianCollectionSource: AnySiberianCollectionSource {
   associatedtype ItemType = CollectionModel
@@ -48,8 +49,8 @@ public protocol AnySiberianCollectionSource {
   func numberOfAnyItems(in section: Int) -> Int
 }
 
-
 open class SiberianTableViewManager: NSObject, UITableViewDataSource, UITableViewDelegate {
+
   open fileprivate(set) var provider: AnySiberianCollectionSource!
   open fileprivate(set) var delegate: SiberianCollectionDelegate?
   open fileprivate(set) var fetchDelegate: CollectionPresenterInput?
@@ -58,7 +59,9 @@ open class SiberianTableViewManager: NSObject, UITableViewDataSource, UITableVie
     super.init()
   }
   
-  public init(provider: AnySiberianCollectionSource, delegate: SiberianCollectionDelegate?, fetchDelegate: CollectionPresenterInput?) {
+  public init(provider: AnySiberianCollectionSource,
+              delegate: SiberianCollectionDelegate?,
+              fetchDelegate: CollectionPresenterInput?) {
     super.init()
     self.provider = provider
     self.delegate = delegate
@@ -116,7 +119,7 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, 
   open weak var delegate: SiberianCollectionDelegate?
   open weak var fetchDelegate: CollectionPresenterInput?
   
-  fileprivate override init() {
+  private override init() {
     super.init()
   }
   
@@ -151,7 +154,9 @@ open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, 
     }
   }
   
-  open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  open func collectionView(_ collectionView: UICollectionView,
+                           layout collectionViewLayout: UICollectionViewLayout,
+                           sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.bounds.width, height: self.defaultCellHeight)
   }
   

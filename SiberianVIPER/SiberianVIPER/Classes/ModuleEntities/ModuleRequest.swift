@@ -6,10 +6,7 @@
 //  Copyright © 2018 Sergey Petrachkov. All rights reserved.
 //
 
-import Foundation
-public protocol ModuleRequest {
-  
-}
+public protocol ModuleRequest { }
 
 public protocol PaginationRequest: ModuleRequest {
   var paginationParams: PaginationParameters { get set }
@@ -23,6 +20,3 @@ public struct PaginationParameters {
     self.take = take
   }
 }
-
-
-

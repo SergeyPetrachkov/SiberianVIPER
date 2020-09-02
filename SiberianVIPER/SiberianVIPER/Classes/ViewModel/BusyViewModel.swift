@@ -6,9 +6,6 @@
 //  Copyright © 2017 Sergey Petrachkov. All rights reserved.
 //
 
-import Foundation
-
 public protocol BusyViewModel {
   var isBusy: Bool { get set }
 }
-

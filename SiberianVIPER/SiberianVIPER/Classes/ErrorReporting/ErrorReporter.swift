@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 public protocol ErrorReporter {
   func track(error: Error)
 }

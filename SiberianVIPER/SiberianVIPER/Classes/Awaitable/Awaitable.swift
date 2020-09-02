@@ -6,8 +6,6 @@
 //  Copyright © 2017 Sergey Petrachkov. All rights reserved.
 //
 
-import Foundation
-
 public protocol Awaitable {
   /// Ask an object to go into pending state
   /// - parameters:
@@ -17,6 +15,7 @@ public protocol Awaitable {
   /// Ask an object to exit pending state
   func exitPendingState()
 }
+
 public protocol AwaitableDelegate: class {
   // Callback that signals an async operation start
   func didEnterPendingState(visible: Bool, blocking: Bool)
