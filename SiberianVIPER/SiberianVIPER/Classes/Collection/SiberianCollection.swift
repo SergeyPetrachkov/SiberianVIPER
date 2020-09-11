@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol SiberianCollectionSource: AnySiberianCollectionSource {
-  associatedtype ItemType = CollectionModel
+  associatedtype ItemType = CollectionItemPresenter
   var items: [ItemType] { get }
   
   var changeSet: [CollectionChange] { get }
@@ -21,12 +21,12 @@ public protocol SiberianCollectionSource: AnySiberianCollectionSource {
 }
 
 public extension SiberianCollectionSource {
-  var AnyType: CollectionModel.Type {
-    return (ItemType.self as! CollectionModel.Type).self
+  var AnyType: CollectionItemPresenter.Type {
+    return (ItemType.self as! CollectionItemPresenter.Type).self
   }
   
-  func anyItem(for indexPath: IndexPath) -> CollectionModel? {
-    return self.item(for: indexPath) as? CollectionModel
+  func anyItem(for indexPath: IndexPath) -> CollectionItemPresenter? {
+    return self.item(for: indexPath) as? CollectionItemPresenter
   }
   
   func numberOfAnyItems(in section: Int) -> Int {
@@ -35,35 +35,31 @@ public extension SiberianCollectionSource {
 }
 
 public protocol AnySiberianCollectionSource {
-  var AnyType: CollectionModel.Type { get }
+  var AnyType: CollectionItemPresenter.Type { get }
   // MARK: - Sections
   func numberOfSections() -> Int
   
-  func modelForSectionHeader(at index: Int) -> CollectionModel?
+  func modelForSectionHeader(at index: Int) -> CollectionItemPresenter?
   func heightForSectionHeader(at index: Int) -> CGFloat
   
-  func modelForSectionFooter(at index: Int) -> CollectionModel?
+  func modelForSectionFooter(at index: Int) -> CollectionItemPresenter?
   func heightForSectionFooter(at index: Int) -> CGFloat
   // MARK: - Items
-  func anyItem(for indexPath: IndexPath) -> CollectionModel?
+  func anyItem(for indexPath: IndexPath) -> CollectionItemPresenter?
   func numberOfAnyItems(in section: Int) -> Int
 }
 
 open class SiberianTableViewManager: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-  open fileprivate(set) var provider: AnySiberianCollectionSource!
-  open fileprivate(set) var delegate: SiberianCollectionDelegate?
-  open fileprivate(set) var fetchDelegate: CollectionPresenterInput?
-  
-  fileprivate override init() {
-    super.init()
-  }
-  
+  open private(set) var provider: AnySiberianCollectionSource
+  open weak var delegate: SiberianCollectionDelegate?
+  open weak var fetchDelegate: CollectionPresenterInput?
+
   public init(provider: AnySiberianCollectionSource,
-              delegate: SiberianCollectionDelegate?,
-              fetchDelegate: CollectionPresenterInput?) {
-    super.init()
+              delegate: SiberianCollectionDelegate? = nil,
+              fetchDelegate: CollectionPresenterInput? = nil) {
     self.provider = provider
+    super.init()
     self.delegate = delegate
     self.fetchDelegate = fetchDelegate
   }
@@ -107,27 +103,23 @@ open class SiberianTableViewManager: NSObject, UITableViewDataSource, UITableVie
 }
 
 open class SiberianCollectionViewManager: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+  private var scrollDirection: UICollectionView.ScrollDirection
   
+  open private(set) var provider: AnySiberianCollectionSource
+  
+  open weak var delegate: SiberianCollectionDelegate?
+  open weak var fetchDelegate: CollectionPresenterInput?
+
   open var defaultCellHeight: CGFloat {
     return 44
   }
   
-  private var scrollDirection: UICollectionView.ScrollDirection = UICollectionView.ScrollDirection.vertical
-  
-  open fileprivate(set) var provider: AnySiberianCollectionSource!
-  
-  open weak var delegate: SiberianCollectionDelegate?
-  open weak var fetchDelegate: CollectionPresenterInput?
-  
-  private override init() {
-    super.init()
-  }
-  
   public init(provider: AnySiberianCollectionSource,
               scrollDirection: UICollectionView.ScrollDirection = .vertical) {
-    super.init()
     self.provider = provider
     self.scrollDirection = scrollDirection
+    super.init()
   }
   
   public func collectionView(_ collectionView: UICollectionView,

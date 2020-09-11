@@ -19,9 +19,19 @@ public protocol CollectionPresenterInput: AnyObject {
   @discardableResult func fetchItems(reset: Bool) throws -> (skip: Int, take: Int)
 }
 
+public extension CollectionPresenterInput {
+  func reorder(oldIndexPath: IndexPath, newIndexPath: IndexPath) {
+    assertionFailure("Default protocol implementation of \(#function) called!")
+  }
+}
+
 open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, SiberianCollectionSource {
   
-  public var collectionModel: CollectionViewModel!
+  public var collectionModel: CollectionViewModel
+
+  public init(collectionModel: CollectionViewModel) {
+    self.collectionModel = collectionModel
+  }
   
   @discardableResult open func fetchItems(reset: Bool) throws -> (skip: Int, take: Int)  {
     if let busy = self.awaitableModel?.isBusy, busy {
@@ -49,7 +59,7 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     self.collectionModel.changeSet = []
   }
   
-  open func modelForSectionHeader(at index: Int) -> CollectionModel? {
+  open func modelForSectionHeader(at index: Int) -> CollectionItemPresenter? {
     return nil
   }
   
@@ -57,7 +67,7 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     return 0
   }
   
-  open func modelForSectionFooter(at index: Int) -> CollectionModel? {
+  open func modelForSectionFooter(at index: Int) -> CollectionItemPresenter? {
     return nil
   }
   
@@ -65,7 +75,7 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     return 0
   }
   
-  open func modelForSection(at index: Int) -> CollectionModel? {
+  open func modelForSection(at index: Int) -> CollectionItemPresenter? {
     return nil
   }
   
@@ -73,7 +83,7 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     return 1
   }
   
-  open var items: [CollectionModel] {
+  open var items: [CollectionItemPresenter] {
     return self.collectionModel.items
   }
   
@@ -81,7 +91,7 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
     return self.collectionModel.changeSet
   }
   
-  open func item(for indexPath: IndexPath) -> CollectionModel? {
+  open func item(for indexPath: IndexPath) -> CollectionItemPresenter? {
     if indexPath.row >= self.items.count {
       return nil
     }
@@ -90,5 +100,9 @@ open class CollectionPresenter: SiberianPresenter, CollectionPresenterInput, Sib
   
   open func numberOfItems(in section: Int) -> Int {
     return self.items.count
+  }
+
+  open func reorder(oldIndexPath: IndexPath, newIndexPath: IndexPath) {
+    self.collectionModel.items.swapAt(oldIndexPath.row, newIndexPath.row)
   }
 }

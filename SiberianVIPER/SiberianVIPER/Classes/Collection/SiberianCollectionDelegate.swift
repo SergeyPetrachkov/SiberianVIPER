@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol SiberianCollectionDelegate: AnyObject {
-  func didSelect(item: CollectionModel, at indexPath: IndexPath)
+  func didSelect(item: CollectionItemPresenter, at indexPath: IndexPath)
 }

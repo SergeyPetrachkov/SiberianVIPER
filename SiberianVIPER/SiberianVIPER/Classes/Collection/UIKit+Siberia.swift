@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension UITableView {
-  func dequeueReusableCell<T: CollectionModelGeneric>(withModel model: T, for indexPath: IndexPath) -> UITableViewCell {
+  func dequeueReusableCell<T: GenericCollectionItemPresenter>(withModel model: T, for indexPath: IndexPath) -> UITableViewCell {
     let identifier = String(describing: T.ViewType.self)
     let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
     if let cell = cell as? T.ViewType {
@@ -19,7 +19,7 @@ public extension UITableView {
     return cell
   }
   
-  func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UITableViewCell {
+  func dequeueReusableCell(withModel model: CollectionItemPresenter, for indexPath: IndexPath) -> UITableViewCell {
     let identifier = String(describing: type(of: model).anyViewType)
     let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
     model.setupAny(view: cell)
@@ -29,7 +29,7 @@ public extension UITableView {
 
 public extension UICollectionView {
   
-  func dequeueReusableCell<T: CollectionModelGeneric>(withModel model: T, for indexPath: IndexPath) -> UICollectionViewCell {
+  func dequeueReusableCell<T: GenericCollectionItemPresenter>(withModel model: T, for indexPath: IndexPath) -> UICollectionViewCell {
     let identifier = String(describing: T.ViewType.self)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     if let cell = cell as? T.ViewType {
@@ -38,7 +38,7 @@ public extension UICollectionView {
     return cell
   }
   
-  func dequeueReusableCell(withModel model: CollectionModel, for indexPath: IndexPath) -> UICollectionViewCell {
+  func dequeueReusableCell(withModel model: CollectionItemPresenter, for indexPath: IndexPath) -> UICollectionViewCell {
     let identifier = String(describing: type(of: model).anyViewType)
     let cell = self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     model.setupAny(view: cell)

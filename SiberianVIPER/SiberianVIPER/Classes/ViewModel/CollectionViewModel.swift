@@ -8,6 +8,6 @@
 
 public protocol CollectionViewModel: BusyViewModel {
   var batchSize: Int { get set }
-  var items: [CollectionModel] { get set }
+  var items: [CollectionItemPresenter] { get set }
   var changeSet: [CollectionChange] { get set }
 }
