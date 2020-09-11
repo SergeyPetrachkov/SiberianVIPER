@@ -48,7 +48,3 @@ Sergey Petrachkov, petrachkovsergey@gmail.com
 4. Implement your thing.
 5. Clean code if needed.
 6. Submit pull request.
-
-## Sample
-
-
